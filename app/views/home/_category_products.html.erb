@@ -1,0 +1,36 @@
+<div class="panel-group category-products" id="accordian"><!--category-productsr-->
+  <div class="panel panel-default">
+    <% @categories.each do |category| %>
+      <% if category.parent_id == nil %>
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordian" href="#<%= category.name %>">
+              <%# if @parents.include? category.id %>
+              <span class="badge pull-right"><i class="fa fa-plus"></i></span>
+                <%= category.name %>
+                <%# a = category.id %>
+            <%# else%>
+              <a href="#"><%#= category.name %></a>
+            <%# end %>
+            </a>
+          </h4>
+        </div>
+      <%# if category.parent_id == nil%>
+        <%# if @parents.include? category.id %>
+            <div id="<%= category.name %>" class="panel-collapse collapse">
+              <div class="panel-body">
+                <ul>
+                  <%category.brands.each do |sub| %>
+                      <%# if sub.parent_id == a %>
+                        <li><a href="#"><%= sub.name %> </a></li>
+                      <%# end %>
+                  <% end %>
+                </ul>
+              </div>
+            </div>
+        <%# end %>
+    <%# end %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

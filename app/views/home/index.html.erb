@@ -1,0 +1,40 @@
+
+
+<body>
+  
+  <div class="header_top"><!--header-->
+    <%= render 'header' %>
+  </header>
+  <section id="slider"><!--slider-->
+    <%= render 'slider' %>
+  </section>
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-3">
+          <div class="left-sidebar">
+            <h2>Category</h2>
+            <!--category-products-->
+            <%= render "category_products"%>
+            <!--brands_products-->
+            <%= render "brands" %>
+            <div class="shipping text-center"><!--shipping-->
+              <img src="/assets/home/shipping.jpg" alt="" />
+            </div><!--/shipping-->
+          </div>
+        </div>
+        <div class="col-sm-9 padding-right">
+          <!--features_items-->
+          <%= render 'featured_items'%>
+          <!--category-tab-->
+          <%= render "category_tab" %>
+          <!--recommended_items-->
+          <%= render 'recommended_items' %>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer id="footer"><!--Footer-->
+    <%= render'footer' %>
+  </footer><!--/Footer-->
+</body>

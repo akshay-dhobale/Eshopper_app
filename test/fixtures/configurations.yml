@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  conf_key: MyString
+  conf_value: MyString
+
+two:
+  conf_key: MyString
+  conf_value: MyString
