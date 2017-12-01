@@ -23,3 +23,5 @@ Things you may want to cover:
 
 * ...
 # Eshopper_app
+# Eshopper_app
+# Demo project from training
