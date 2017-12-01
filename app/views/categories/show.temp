@@ -1,0 +1,46 @@
+
+<!-- Category Tab -->
+<div class="col-sm-12">
+  <ul class="nav nav-tabs" >
+    <% @categories.each_with_index do |category, index| %>
+      <li class="<% if index == 0%>active<% end %>"><a href="#<%= category.name %>" data-toggle="tab">
+      <%= link_to home_index_path (category.id) do %>
+      <%= category.name %>
+        <% end %>
+      </a></li>
+    <% end%>
+  </ul>                        
+</div>
+
+<div class="tab-content">
+    <%# @categories.each_with_index do |category, index| %>
+      <%# a = category.id %>
+      <div class="tab-pane fade active in " id="" >
+        <% if @product.present? %>
+        <%# render 'home/category_tab' ,product: @product%>
+          <% @product.each do |prod| %>
+          <%# if prod.category_ids.first == a %> 
+            <% prod.product_images.each do |pi| %>
+              <div class="col-sm-3">
+                <div class="product-image-wrapper">
+                  <div class="single-products">
+                    <div class="productinfo text-center">
+                      <%= image_tag pi.prod_img.url %>
+                      <h2>$<%= pi.product.price%></h2>
+                      <p><%= pi.product.name%></p>
+                      <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          <%# end %>
+          <% end %>
+        <% end %>
+      </div>
+    <%# end %>
+  </div>
+
+
+
+  <!-- Category Tab -->

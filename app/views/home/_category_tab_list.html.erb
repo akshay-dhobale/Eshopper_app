@@ -1,0 +1,30 @@
+<!-- Contains all element to show in Category Tab -->
+
+<% if @cat_products.count == 0 %>
+  <h1>
+    <b>OPPS!</b>
+     We Don't have any Products from this category
+  </h1>
+<% else %>
+  <% @cat_products.each_with_index do |prod, index| %>
+    <div class="tab-pane fade active in"id = "<%= prod.category_ids.first %>">
+        <% prod.product_images.each do |pi| %>
+          <div class="col-sm-3">
+            <div class="product-image-wrapper">
+              <div class="single-products">
+                <div class="productinfo text-center">
+                  <%= link_to products_show_path(id:prod.id) do %>
+                    <%= image_tag pi.prod_img.url %>
+                  <% end %>
+                  <h2>$<%= pi.product.price%></h2>
+                  <p><%= pi.product.name%></p>
+                  <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        <%# end %>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>

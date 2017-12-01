@@ -1,36 +1,33 @@
 <div class="panel-group category-products" id="accordian"><!--category-productsr-->
   <div class="panel panel-default">
     <% @categories.each do |category| %>
-      <% if category.parent_id == nil %>
-        <div class="panel-heading">
-          <h4 class="panel-title">
-            <a data-toggle="collapse" data-parent="#accordian" href="#<%= category.name %>">
-              <%# if @parents.include? category.id %>
-              <span class="badge pull-right"><i class="fa fa-plus"></i></span>
-                <%= category.name %>
-                <%# a = category.id %>
-            <%# else%>
-              <a href="#"><%#= category.name %></a>
-            <%# end %>
-            </a>
-          </h4>
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordian" href="#<%= category.name %>">
+            <%# if @parents.include? category.id %>
+            <span class="badge pull-right"><i class="fa fa-plus"></i></span>
+            <%= category.name %>
+          </a>
+        </h4>
+      </div>
+      <div id="<%= category.name %>" class="panel-collapse collapse">
+        <div class="panel-body">
+          <ul>
+            <%category.subcategories.each do |sub | %>
+              <li>
+                <%= link_to subcategories_show_path(id: sub.id) , id:sub.id, data: { remote: true } do %>
+                  <%= sub.name %>
+                <% end %>
+              </li>
+            <% end %>
+          </ul>
         </div>
-      <%# if category.parent_id == nil%>
-        <%# if @parents.include? category.id %>
-            <div id="<%= category.name %>" class="panel-collapse collapse">
-              <div class="panel-body">
-                <ul>
-                  <%category.brands.each do |sub| %>
-                      <%# if sub.parent_id == a %>
-                        <li><a href="#"><%= sub.name %> </a></li>
-                      <%# end %>
-                  <% end %>
-                </ul>
-              </div>
-            </div>
-        <%# end %>
-    <%# end %>
-      <% end %>
+      </div>
     <% end %>
   </div>
 </div>
+
+
+<%#= link_to brandcategories_show_path(category_id: category.id, brand_id: sub.id), id:category.id, data: { remote: true } do %>
+                <%#= sub.name %> 
+              <%# end %>

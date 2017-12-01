@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171124085542) do
+ActiveRecord::Schema.define(version: 20171130123138) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,26 +24,6 @@ ActiveRecord::Schema.define(version: 20171124085542) do
     t.string "zipcode"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "admin_users", force: :cascade do |t|
-    t.string "firstname"
-    t.string "lastname"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer "sign_in_count", default: 0, null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.inet "current_sign_in_ip"
-    t.inet "last_sign_in_ip"
-    t.boolean "permission"
-    t.index ["email"], name: "index_admin_users_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
   create_table "banners", force: :cascade do |t|
@@ -158,7 +138,7 @@ ActiveRecord::Schema.define(version: 20171124085542) do
   create_table "products", force: :cascade do |t|
     t.string "name"
     t.string "sku"
-    t.string "short_desciption"
+    t.string "short_description"
     t.text "long_description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -173,11 +153,41 @@ ActiveRecord::Schema.define(version: 20171124085542) do
     t.index ["brand_id"], name: "index_products_on_brand_id"
   end
 
+  create_table "productsubcategories", force: :cascade do |t|
+    t.bigint "product_id"
+    t.bigint "subcategory_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_productsubcategories_on_product_id"
+    t.index ["subcategory_id"], name: "index_productsubcategories_on_subcategory_id"
+  end
+
+  create_table "subcategories", force: :cascade do |t|
+    t.string "name"
+    t.bigint "category_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_subcategories_on_category_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "firstname"
     t.string "lastname"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet "current_sign_in_ip"
+    t.inet "last_sign_in_ip"
+    t.boolean "permission"
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   create_table "wishlists", force: :cascade do |t|
@@ -191,4 +201,7 @@ ActiveRecord::Schema.define(version: 20171124085542) do
   add_foreign_key "brandcategories", "categories"
   add_foreign_key "product_images", "products"
   add_foreign_key "products", "brands"
+  add_foreign_key "productsubcategories", "products"
+  add_foreign_key "productsubcategories", "subcategories"
+  add_foreign_key "subcategories", "categories"
 end

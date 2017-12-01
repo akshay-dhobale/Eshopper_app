@@ -1,23 +1,42 @@
-<div class="features_items"><!--features_items-->
+<div class="features_items" id = "brand_product"><!--features_items-->
   <h2 class="title text-center">Features Items</h2>
-    <% @products.each_with_index do |prod , index|%>
-    <% if prod.brand.name == "Nike" %>
+  <% if @products.count == 0 %>
+    <!-- <h2>
+      <b>OPPS!</b>
+       We Don't have any Products from this Type
+    </h2> -->
+    <div>
+    <h4 class="view-content">We're sorry, but there are currently no events that match your selection. Please check back soon, as we add new events frequently.</h4>
+    </div>
+  <% else%>
+    <% @products.each do |prod , index|%>
       <div class="col-sm-4">
         <div class="product-image-wrapper">
           <div class="single-products"> 
               <div class="productinfo text-center " >
-                <%= image_tag prod.product_images.first.prod_img.url %>
+                <%#= link_to products_show_path(id:prod.id), id: prod.id, data:{ remote: true } do %>
+                 <%= link_to products_show_path(id:prod.id) do %>
+                  <%= image_tag prod.product_images.first.prod_img.url %>
+                <% end %>  
                 <h2>$<%= prod.price%></h2>
                 <p><%= prod.name%></p>
                 <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
               </div>
-              <div class="product-overlay">
+              <% if index == 0 %>
+                <%# if index % 2 == 0 %>
+                  <img src="/assets/home/new.png" class="new" alt="" />
+                <% else %>
+                  <img src="/assets/home/sale.png" class="new" alt="" />
+                <%# end %>
+              <% end %>
+              <!-- <div class="product-overlay">
                 <div class="overlay-content">
-                  <h2>$<%= prod.price%></h2>
-                  <p><%= prod.name%></p>
+                  <h2>$<%#= prod.price%></h2>
+                  <p><%#= prod.name%></p>
+                  <p><%#= prod.short_description%></p>
                   <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                 </div>
-              </div>
+              </div> -->
           </div>
           <div class="choose">
             <ul class="nav nav-pills nav-justified">

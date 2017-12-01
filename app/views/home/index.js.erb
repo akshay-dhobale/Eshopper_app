@@ -1,0 +1,24 @@
+// // $(document).ready(funnction({}))
+// $(document).ready(function(){
+//   // var id = $(;
+//   debugger
+//   $("#id").on("click", function(){
+//     alert("dfdfsdfds");
+//     $.ajax({
+//       url: "/categories/show",
+//       type: "POST",
+//       data: {
+//         id: '<%#= category_url %>',
+//       },
+//     });
+//   });
+// });
+
+
+// $(document).ready(function(){
+//   // var id = $(;
+//   debugger
+//   $("#id").on("click", function(){
+// $("#li_1").hide();
+$("<%= j render partial: 'home/category_tab_list'  %>").appendTo("#content"); 
+

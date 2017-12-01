@@ -1,34 +1,39 @@
-<!--category-tab-->
+
 <div class="category-tab">
   <div class="col-sm-12">
-    <ul class="nav nav-tabs">
-      <li class="active tshirt"><a href="#tshirt" data-toggle="tab">T-Shirt</a></li>
-      <li class="blazers"><a href="#blazers" data-toggle="tab">Blazers</a></li>
-      <li ><a href="#sunglass" data-toggle="tab">Sunglass</a></li>
-      <li><a href="#kids" data-toggle="tab">Kids</a></li>
-      <li><a href="#poloshirt" data-toggle="tab">Polo shirt</a></li>
-    </ul>
+    <ul class="nav nav-tabs" >
+      <% @categories.each_with_index do |category, index| %>
+        <li class="<% if index == 0%>active<% end %>" >
+        <%# binding.pry %>
+          <%= link_to category_path(category.id), id:category.id, data: { remote: true, toggle: 'tab'} do %>
+            <%= category.name %>
+          <% end %>
+          </a>
+        </li>
+      <% end%>
+    </ul>                        
   </div>
-  <div class="tab-content">
-    <div class="tab-pane fade active in " id="tshirt" >
-      <% @productimages.each_with_index do |pi , index|%>
-        <%# if index < 4 %>
-          <div class="col-sm-3">
-            <div class="product-image-wrapper">
-              <div class="single-products">
-                <div class="productinfo text-center">
-                  <%= image_tag pi.prod_img.url %>
-                  <h2>$<%= pi.product.price%></h2>
-                <p><%= pi.product.name%></p>
-                  <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                </div>
+  <%#= render 'category_tab_list'%>
+  <div id = "content" class="tab-content">
+    <div class="tab-pane fade active in" id = "<%= @categories.first.name %>" >
+      <% @categories.first.products.each do| prod | %>
+        <div class="col-sm-3">
+          <div class="product-image-wrapper">
+            <div class="single-products">
+              <div class="productinfo text-center">
+                <%= link_to products_show_path(id:prod.id) do %>
+                  <%= image_tag prod.product_images.first.prod_img.url %>
+                <% end %>
+                <h2>$<%= prod.price%></h2>
+                <p><%= prod.name%></p>
+                <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
               </div>
             </div>
           </div>
-        <%# end %>
+        </div>
       <% end %>
     </div>
   </div>
 </div>
-<!--/category-tab-->
-    <%#= will_paginate @productimages, renderer: BootstrapPagination::Rails %>
+
+

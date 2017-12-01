@@ -10,22 +10,8 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require rails-ujs
-//= require turbolinks
+//= require jquery3
+//= require jquery_ujs
 //= require_tree .
-//= require jquery.flexslider
 
 
-*= require flexslider
-
-$(function() {
-  $('.slider').slider();
-});
-
-
-$(document).ready(function() {
-  	$('[data-js-hide-link]').click(function(event){
-		$(this).parents('li').hide();
-	    event.preventDefault(); 
-  });
-})

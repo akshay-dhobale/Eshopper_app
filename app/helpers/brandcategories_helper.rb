@@ -1,0 +1,2 @@
+module BrandcategoriesHelper
+end
