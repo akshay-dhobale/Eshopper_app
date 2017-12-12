@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171201053754) do
+ActiveRecord::Schema.define(version: 20171211130158) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,8 @@ ActiveRecord::Schema.define(version: 20171201053754) do
     t.string "zipcode"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_addresses_on_user_id"
   end
 
   create_table "banners", force: :cascade do |t|
@@ -52,11 +54,11 @@ ActiveRecord::Schema.define(version: 20171201053754) do
   end
 
   create_table "carts", force: :cascade do |t|
-    t.string "quantity"
     t.bigint "user_id"
     t.bigint "product_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "quantity"
     t.index ["product_id"], name: "index_carts_on_product_id"
     t.index ["user_id"], name: "index_carts_on_user_id"
   end
@@ -120,6 +122,29 @@ ActiveRecord::Schema.define(version: 20171201053754) do
   end
 
   create_table "payment_gateways", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "product_attribute_assocs", force: :cascade do |t|
+    t.bigint "product_id"
+    t.bigint "product_attribute_id"
+    t.bigint "product_attribute_value_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_attribute_id"], name: "index_product_attribute_assocs_on_product_attribute_id"
+    t.index ["product_attribute_value_id"], name: "index_product_attribute_assocs_on_product_attribute_value_id"
+    t.index ["product_id"], name: "index_product_attribute_assocs_on_product_id"
+  end
+
+  create_table "product_attribute_values", force: :cascade do |t|
+    t.string "attr_value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "product_attributes", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -196,24 +221,35 @@ ActiveRecord::Schema.define(version: 20171201053754) do
     t.inet "current_sign_in_ip"
     t.inet "last_sign_in_ip"
     t.boolean "permission"
+    t.string "twitter_token"
+    t.string "provider"
+    t.string "uid"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   create_table "wishlists", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "product_id"
+    t.bigint "user_id"
+    t.bigint "product_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_wishlists_on_product_id"
+    t.index ["user_id"], name: "index_wishlists_on_user_id"
   end
 
+  add_foreign_key "addresses", "users"
   add_foreign_key "brandcategories", "brands"
   add_foreign_key "brandcategories", "categories"
   add_foreign_key "carts", "products"
   add_foreign_key "carts", "users"
+  add_foreign_key "product_attribute_assocs", "product_attribute_values"
+  add_foreign_key "product_attribute_assocs", "product_attributes"
+  add_foreign_key "product_attribute_assocs", "products"
   add_foreign_key "product_images", "products"
   add_foreign_key "products", "brands"
   add_foreign_key "productsubcategories", "products"
   add_foreign_key "productsubcategories", "subcategories"
   add_foreign_key "subcategories", "categories"
+  add_foreign_key "wishlists", "products"
+  add_foreign_key "wishlists", "users"
 end

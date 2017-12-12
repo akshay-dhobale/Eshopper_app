@@ -5,7 +5,7 @@
       <% @categories.each_with_index do |category, index| %>
         <li class="<% if index == 0%>active<% end %>" >
         <%# binding.pry %>
-          <%= link_to category_path(category.id), id:category.id, data: { remote: true, toggle: 'tab'} do %>
+          <%= link_to category_path(id:category.id), id:category.id, data: { remote: true} do %>
             <%= category.name %>
           <% end %>
           </a>

@@ -1,0 +1,41 @@
+<div class="recommended_items">
+  <h2 class="title text-center">Try other products by <%= @product.brand.name %></h2>
+  <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+      <% @brand_prod.each.each_slice(3).with_index do |reco, i|%>
+        <div class="item <%= 'active' if i == 0 %>"> 
+          <% reco.each do |image|%>
+            <div class="col-sm-4">
+              <div class="product-image-wrapper">
+                <div class="single-products">
+                  <div class="productinfo text-center">
+                    <%= image_tag image.product_images.first.prod_img.url %>
+                    <h2>$<%= image.price%></h2>
+                    <p><%= image.name %></p>
+                    <p title="Click to add to your cart" class="btn btn-default add-to-cart" data-no-turbolink><i   class="fa fa-shopping-cart"></i>
+                      <% if current_user.present? %>
+                        <%= link_to carts_create_path(product_id: image.id), id:image.id, data: { remote: true } do %>
+                            Add to cart
+                        <% end %>
+                      <% else %>
+                        <%= link_to carts_create_path(product_id: image.id), id:image.id do %>
+                        Add to cart
+                        <% end %>
+                      <% end %>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+    <a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">
+      <i class="fa fa-angle-left"></i>
+    </a>
+    <a class="right recommended-item-control" href="#recommended-item-carousel" data-slide="next">
+      <i class="fa fa-angle-right"></i>
+    </a>      
+  </div>
+</div>

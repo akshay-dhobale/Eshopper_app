@@ -1,0 +1,18 @@
+<div class="col-sm-4 col-sm-offset-1">
+  <div class="login-form"><!--login form-->
+    <h2>Login to your account</h2>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <form action="#">
+      <%= f.label :email %><br />
+      <%= f.email_field :email, autofocus: true %>
+      <%= f.label :password %><br />
+      <%= f.password_field :password, autocomplete: "off" %>
+      <span>
+        <input type="checkbox" class="checkbox"> 
+        Remember Me
+      </span>
+      <button type="submit" class="btn btn-default">Login</button>
+    </form>
+    <%end%>
+  </div>
+</div>

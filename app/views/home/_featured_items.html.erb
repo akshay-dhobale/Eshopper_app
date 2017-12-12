@@ -1,51 +1,58 @@
 <div class="features_items" id = "brand_product"><!--features_items-->
   <h2 class="title text-center">Features Items</h2>
   <% if @products.count == 0 %>
-    <!-- <h2>
-      <b>OPPS!</b>
-       We Don't have any Products from this Type
-    </h2> -->
     <div>
-    <h4 class="view-content">We're sorry, but there are currently no events that match your selection. Please check back soon, as we add new events frequently.</h4>
+      <h4 class="view-content">We're sorry, but there are currently no products that match your selection. Please check back soon, as we add new products frequently.</h4>
     </div>
   <% else%>
-    <% @products.each do |prod , index|%>
-      <div class="col-sm-4">
-        <div class="product-image-wrapper">
-          <div class="single-products"> 
-              <div class="productinfo text-center " >
-                <%#= link_to products_show_path(id:prod.id), id: prod.id, data:{ remote: true } do %>
-                 <%= link_to products_show_path(id:prod.id) do %>
+    <% @products.each_with_index do |prod , index|%>
+      <% if index < 6 %>
+        <div class="col-sm-4">
+          <div class="product-image-wrapper">
+            <div class="single-products"> 
+              <div class="productinfo text-center " title="Click on image to view product details">
+                <%= link_to products_show_path(id:prod.id) do %>
                   <%= image_tag prod.product_images.first.prod_img.url %>
                 <% end %>  
                 <h2>$<%= prod.price%></h2>
                 <p><%= prod.name%></p>
-                <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                <p title="Click to add to your cart" class="btn btn-default add-to-cart" data-no-turbolink><i class="fa fa-shopping-cart"></i>
+                  <% if current_user.present? %>
+                    <%= link_to carts_create_path(product_id: prod.id), id:prod.id, data: { remote: true } do %>
+                        Add to cart
+                    <% end %>
+                  <% else %>
+                    <%= link_to carts_create_path(product_id: prod.id), id:prod.id do %>
+                    Add to cart
+                    <% end %>
+                  <% end %>
+                  </p>
               </div>
               <% if index == 0 %>
-                <%# if index % 2 == 0 %>
                   <img src="/assets/home/new.png" class="new" alt="" />
                 <% else %>
                   <img src="/assets/home/sale.png" class="new" alt="" />
-                <%# end %>
               <% end %>
-              <!-- <div class="product-overlay">
-                <div class="overlay-content">
-                  <h2>$<%#= prod.price%></h2>
-                  <p><%#= prod.name%></p>
-                  <p><%#= prod.short_description%></p>
-                  <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                </div>
-              </div> -->
-          </div>
-          <div class="choose">
-            <ul class="nav nav-pills nav-justified">
-              <li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
-              <li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
-            </ul>
+            </div>
+            <div class="choose">
+              <ul class="nav nav-pills nav-justified">
+                <li>
+                  <% if current_user.present? %>
+                    <%= link_to wishlists_create_path(product_id: prod.id), id:prod.id, data: { remote: true } do %>
+                      <i class="fa fa-plus-square"></i>Add to wishlist
+                    <% end %>
+                  <% else %>
+                    <%= link_to wishlists_create_path(product_id: prod.id), id:prod.id do %>
+                     <i class="fa fa-plus-square"></i>Add to wishlist
+                    <% end %>
+                  <% end %>
+                </li>
+                <li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
+              </ul>
+            </div>
           </div>
         </div>
-      </div>
+      <% end %>
     <% end %>
   <% end %>
 </div>

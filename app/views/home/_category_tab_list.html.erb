@@ -18,7 +18,9 @@
                   <% end %>
                   <h2>$<%= pi.product.price%></h2>
                   <p><%= pi.product.name%></p>
-                  <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                  <p class="btn btn-default add-to-cart" data-no-turbolink><i class="fa fa-shopping-cart"></i><%= link_to carts_create_path(product_id: prod.id), id:prod.id, data: { remote: true } do %>
+                  Add to cart
+                  <% end %></p>
                 </div>
               </div>
             </div>

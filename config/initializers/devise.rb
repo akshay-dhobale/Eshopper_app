@@ -16,6 +16,7 @@ Devise.setup do |config|
 
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
+  config.omniauth :twitter, "AO0S17GErB1rQXXgBPDWvs8K0", "mG7Twc0evz3jNqRq9ldPZDl8nyjhQ0z9h3zVR5oYssPhTaiTmv" 
 
   # Configure the parent class responsible to send e-mails.
   # config.parent_mailer = 'ActionMailer::Base'

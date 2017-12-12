@@ -11,4 +11,13 @@ class Product < ApplicationRecord
 
   has_many :subcategories, through: :productsubcategories
 
+  has_many :carts
+
+  has_many :wishlists
+
+  has_many :product_attribute_assocs, dependent: :destroy
+
+  has_many :product_attributes, through: :product_attribute_assocs
+
+  has_many :product_attribute_values, through: :product_attribute_assocs
 end

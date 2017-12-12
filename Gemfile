@@ -18,10 +18,10 @@ gem 'flex-slider-rails'
 
 gem 'devise-bootstrap-views'
 
-gem 'jquery-rails'
+# gem 'jquery-rails'
+# 
 
-
-
+gem 'omniauth-twitter'
 
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets

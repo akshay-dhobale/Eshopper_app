@@ -1,0 +1,43 @@
+
+<section><!--form-->
+  <div class="container card">
+    <div class="row bg-red">
+      <div class="col-sm-4 col-sm-offset-4 bg-dark">
+        <div class="login-form">
+          <%= form_with(model: @address) do |form| %>
+            <h1>New Address</h1>
+            <p class="panel-body">
+              <%= form.label :address_line_one %><br>
+              <%= form.text_field :address_1 %>
+            </p>
+            <p class="panel-body">
+              <%= form.label :address_line_two %><br>
+              <%= form.text_field :address_2 %>
+            </p>
+            <p class="panel-body">
+              <%= form.label :City %><br>
+              <%= form.text_field :city %>
+            </p>
+            <p class="panel-body">
+              <%= form.label :State %><br>
+              <%= form.text_field :state %>
+            </p>
+            <p class="panel-body">
+              <%= form.label :Country %><br>
+              <%= form.text_field :country %>
+            </p>
+            <p class="panel-body">
+              <%= form.label :Zip_Code %><br>
+              <%= form.text_field :zipcode %>
+            </p>
+            <div>
+              <p>
+                <%= form.submit %>
+              </p>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</session>

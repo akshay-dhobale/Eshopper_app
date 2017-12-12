@@ -1,14 +1,17 @@
 class ProductsController < ApplicationController
     # @products = Product.all
   def show  
-	@categories = Category.all
-	@brands = Brand.all
+  	@categories = Category.all
+  	@brands = Brand.all
     @product = Product.find(params[:id])
-  	# binding.pry
-    # respond_to do |format|
-    #   format.js 
-    # end
-
+    @br = @product.brand_id
+    # binding.pry
+    # @prods = Product.all
+    @brand_prod = Product.where(brand_id: @br)
+    if current_user.present?
+      @cart_user = Cart.where(user_id: current_user.id)
+      @count = @cart_user.count()
+    end
   end
 
   private

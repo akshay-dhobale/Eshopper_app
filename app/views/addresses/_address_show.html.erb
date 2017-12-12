@@ -1,0 +1,52 @@
+<div class="container" >
+  <p>
+    <strong>Name:</strong>
+    <%= current_user.firstname %>
+  </p>
+
+  <p>
+    <strong>E Mail:</strong>
+    <%= current_user.email %>
+  </p>
+  <% @address.each do |address|%>
+    <div class="col-sm-3 well well-sm ">
+      <p>
+        <strong>Address line one:</strong>
+        <%= address.address_1 %>
+      </p>
+
+      <p>
+        <strong>Address line two:</strong>
+        <%= address.address_2 %>
+      </p>
+      
+      <p>
+        <strong>City:</strong>
+        <%= address.city %>
+      </p>
+
+      <p>
+        <strong>State:</strong>
+        <%= address.state %>
+      </p>
+
+      <p>
+        <strong>Country:</strong>
+        <%= address.country %>
+      </p>
+      
+      <p>
+        <strong>Zip code:</strong>
+        <%= address.zipcode %>
+      </p>
+
+      <%= link_to 'Edit', edit_address_path(address), :class=> "btn btn-default" %> 
+      <%= link_to 'Delete', addresses_destroy_path(id: address.id), :class=> "btn btn-default" %>
+    </div>  
+  <% end %>
+</div>
+<div class="container">
+  <p>
+    <%= link_to"Add new Address", new_address_path, :class=> "btn btn-default"  %>
+  </p>
+</div>

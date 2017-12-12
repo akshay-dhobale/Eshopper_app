@@ -3,9 +3,7 @@
   <div class="brands-name">
     <ul class="nav nav-pills nav-stacked">
       <% @brands.each do |brand|%>
-      <%# binding.pry %>
         <li>
-          <span class="pull-right">(50)</span>
           <%= link_to brands_show_path(id: brand.id), id:brand.id, data: { remote: true } do%>
           <%= brand.name %>
           <% end %>
@@ -15,4 +13,3 @@
   </div>
 </div>
 
-<!-- ,:remote => true, :class => 'brand_name'  -->

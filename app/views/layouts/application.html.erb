@@ -1,12 +1,18 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <script src="/assets/jquery.js"></script>
+    <script src="/assets/bootstrap.min.js"></script>
+    <script src="/assets/jquery.scrollUp.min.js"></script>
+    <script src="/assets/price-range.js"></script>
+    <script src="/assets/jquery.prettyPhoto.js"></script>
+    <script src="/assets/main.js"></script>
 
     <title>EshopperApp</title>
     <%= stylesheet_link_tag 'application' %>
     <%= javascript_include_tag 'application' %> 
     <%= csrf_meta_tags %>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
 
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.css">
@@ -20,7 +26,7 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="/assets/bootstrap.min.css" rel="stylesheet">
-    <link href="/assets/font-awesome.min.css" rel="stylesheet">
+    <!-- <link href="/assets/font-awesome.min.css" rel="stylesheet"> -->
     <link href="/assets/prettyPhoto.css" rel="stylesheet">
     <link href="/assets/price-range.css" rel="stylesheet">
     <link href="/assets/animate.css" rel="stylesheet">
@@ -41,13 +47,7 @@
 
     <%#= javascript_include_tag 'jquery', 'application' %>
 
-    <script src="/assets/jquery.js"></script>
-    <script src="/assets/bootstrap.min.js"></script>
-    <script src="/assets/jquery.scrollUp.min.js"></script>
-    <script src="/assets/price-range.js"></script>
-    <script src="/assets/jquery.prettyPhoto.js"></script>
-    <script src="/assets/main.js"></script>
-
+    
   </head>
   <body>
     <%= yield %>

@@ -3,11 +3,14 @@
     <div class="view-product">
       <%= image_tag @product.product_images.first.prod_img.url %>
     </div>
-    <div id="similar-product" class="carousel slide" data-ride="carousel">
+    <div id="similar-product" class="carousel slide col-sm-7" data-ride="carousel">
       <div class="carousel-inner">
+        <%# @product.product_images.each_slice(2).with_index do |image, i| %>
         <% @product.product_images.each_with_index do |image, i| %>
           <div class="item <%= 'active' if i == 0 %>">
-            <%= image_tag image.prod_img.url() %>
+            <%# image.each do |img|%>
+              <%= image_tag image.prod_img.url %>
+            <%# end %>
           </div>                      
         <% end %>
       </div>
@@ -30,16 +33,22 @@
       <span>
         <span>US $<%= @product.price%></span>
         <label>Quantity:</label>
-        <input type="text" value="3" />
-        <button type="button" class="btn btn-fefault cart">
+        <input type="text" value="3" id="quant" />
+         <p class="btn btn-default add-to-cart" data-no-turbolink>
           <i class="fa fa-shopping-cart"></i>
+          <%= link_to carts_create_path(product_id: @product.id), id:@product.id, data: { remote: true } do %>
           Add to cart
-        </button>
+          <% end %>
+        </p>
       </span>
-      <p><b>Availability:</b> <%# if  @product.quantity > 0 %>  In Stock <%# else %> Out of Stock <%# end %></p>
+      <p><b>Availability:</b> <% if  @product.quantity.present? && @product.quantity > 0 %>  In Stock <% else %> Out of Stock <% end %></p>
       <p><b>Condition:</b> New</p>
       <p><b>Brand:</b> <%= @product.brand.name %></p>
+      <% @product.product_attribute_assocs.each do |paa| %>
+        <p><b><%= paa.product_attribute.name %>:</b> <%= paa.product_attribute_value.attr_value %></p>
+      <% end %>
       <a href=""><img src="/assets/product-details/share.png" class="share img-responsive"  alt="" /></a>
     </div><!--/product-information-->
   </div>
 </div><!--/product-details-->
+
