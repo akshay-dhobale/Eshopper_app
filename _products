@@ -1,0 +1,26 @@
+
+[1mFrom:[0m /home/webwerks1/Eshopper_app/app/controllers/orders_controller.rb @ line 18 OrdersController#create:
+
+    [1;34m14[0m: [32mdef[0m [1;34mcreate[0m
+    [1;34m15[0m:   [32mif[0m !params[[33m:payment_option[0m].present?
+    [1;34m16[0m:     redirect_to orders_step3_path 
+    [1;34m17[0m:   [32melse[0m
+ => [1;34m18[0m:   binding.pry
+    [1;34m19[0m:     @order = [1;34;4mOrder[0m.new
+    [1;34m20[0m:     @order.user_id = current_user.id
+    [1;34m21[0m:     @order.payment_gateway_id = params[[33m:payment_option[0m].to_i
+    [1;34m22[0m:     @order.address_id = session[[33m:address_id[0m].to_i
+    [1;34m23[0m:     session[[33m:address_id[0m] = [1;36mnil[0m
+    [1;34m24[0m:     [1;34m# @order = Order.create(orders_params)[0m
+    [1;34m25[0m:     @order.save
+    [1;34m26[0m:     @user_cart = [1;34;4mCart[0m.where([35muser_id[0m: current_user.id)
+    [1;34m27[0m:     @user_cart.each [32mdo[0m |cart_item|
+    [1;34m28[0m:       @order_details = [1;34;4mOrderDetail[0m.create([35morder_id[0m:@order.id, [35mproduct_id[0m:cart_item.product_id, [35mquantity[0m:cart_item.quantity)
+    [1;34m29[0m:       @order_details.save
+    [1;34m30[0m:       cart_item.delete
+    [1;34m31[0m:     [32mend[0m
+    [1;34m32[0m:     @order_details_products = [1;34;4mOrderDetails[0m.where([35muser_id[0m: current_user.id)
+    [1;34m33[0m:       binding.pry
+    [1;34m34[0m:   [32mend[0m
+    [1;34m35[0m: [32mend[0m
+

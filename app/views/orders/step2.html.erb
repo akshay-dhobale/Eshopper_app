@@ -1,0 +1,90 @@
+<body>
+  <%= render "/home/header"%>
+  <div class="container">
+    <p>
+      <strong>Name:</strong>
+      <%= current_user.firstname %>
+    </p>
+    <p>
+      <strong>E Mail:</strong>
+      <%= current_user.email %>
+    </p>
+    <div class="review-payment ">
+      <h2>Review & Payment</h2>
+    </div>
+    <%= render '/carts/cart_items' %>
+  </div>
+  <div class="container" >
+    <div class="col-sm-6">
+      <div class="col-sm- well ">
+        <h4>Delivery Address</h4><br>
+        <p>
+          <strong>Address line 1:</strong>
+          <%= @order_address.address_1 %>
+        </p>
+
+        <p>
+          <strong>Address line 2:</strong>
+          <%= @order_address.address_2 %>
+        </p>
+        
+        <p>
+          <strong>City:</strong>
+          <%= @order_address.city %>
+        </p>
+
+        <p>
+          <strong>State:</strong>
+          <%= @order_address.state %>
+        </p>
+
+        <p>
+          <strong>Country:</strong>
+          <%= @order_address.country %>
+        </p>
+        
+        <p>
+          <strong>Zip code:</strong>
+          <%= @order_address.zipcode %>
+        </p>
+
+        <%#= link_to 'Edit', edit_address_path(@order_address), :class=> "btn btn-default" %> 
+        <%#= link_to 'Delete', addresses_destroy_path(id: @order_address.id), :class=> "btn btn-default" %>
+        <%#= link_to 'Deliver To This Address', orders_step3_path(address_id: @order_address.id), :class=> "btn btn-default" %>
+      </div>  
+    </div>
+    <div class="col-sm-6 well">
+      <div class="total_area">
+        <ul>
+          <li>Cart Sub Total <span>
+            $ <%= @a %>
+          </span></li>
+          <li> Discount:<span> <%if @discount.present?%> <%= @discount%>% <% else %> none <% end %></span></li>
+
+          <%if @discount.present?%>
+            <li> Discounted Amount:  <span>$<%= @a*@discount/100%>
+              <% @discount_amount = @a*@discount/100 %>
+              <% @a = @a-@discount_amount %>
+            </span></li>
+          <% end %>
+          <li><p>GST</p>
+            (CGST + SGST) <span>$ <%= @a*0.1%>
+            <% @tax = @a*0.1 %>
+          </span></li>
+
+          <li>Shipping Cost <span><% if @a<200 %>$ <%=@shipping_cost%> <% else %> Free <% end %></span></li>
+          <li>Total <span>$ <% if @a<200 %> 
+            <%= @a + (@tax) +@shipping_cost %>
+            <% else %> <%= @a + @tax  %> 
+            <% end %></span>
+          </li>
+        </ul>
+        <%= link_to orders_step3_path(address_id: @order_address.id), :class=>"btn btn-default update" do %>Payment <% end %>
+      </div>
+    </div>
+  </div>
+  
+  <footer id="footer">
+    <%= render "/home/footer"%>
+  </footer>
+</body>

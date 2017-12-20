@@ -32,9 +32,16 @@
       <img src="/assets/product-details/rating.png" alt="" />
       <span>
         <span>US $<%= @product.price%></span>
-        <label>Quantity:</label>
-        <input type="text" value="3" id="quant" />
-         <p class="btn btn-default add-to-cart" data-no-turbolink>
+        <!-- <label>Quantity:</label> -->
+        <!-- <input type="text" value="3" id="quant" /> -->
+        <%#= form_for @cart do |f|%>
+          <%#= f.label :quantity %>
+          <%#= f.number_field :quantity, min: 1,value: 1 %>
+          <%#= hidden_field_tag :product_id, @product.id %>
+          <%#= hidden_field_tag :boolean, true %>
+          <%#= button_tag "Add to cart", class: "btn btn-fefault cart fa fa-shopping-cart"  %>
+        <%#end%>
+        <p class="btn btn-default add-to-cart" data-no-turbolink>
           <i class="fa fa-shopping-cart"></i>
           <%= link_to carts_create_path(product_id: @product.id), id:@product.id, data: { remote: true } do %>
           Add to cart

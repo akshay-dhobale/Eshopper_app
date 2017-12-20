@@ -1,8 +1,16 @@
 
 <body>
   <%= render 'home/header' %>
+  <% if current_user.present? %>
   <%= render 'cart_items'%>
+  <% else%>
+  <%= render 'temp_cart'%>
+  <% end %>
   <%= render 'do_action'%>
+
+  <div> 
+    <p class="btn btn-default">Continue Shopping</p>
+  </div>
   <footer id="footer"><!--Footer-->
     <%= render'home/footer' %>
   </footer>

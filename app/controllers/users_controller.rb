@@ -20,6 +20,7 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+    @user = current_user
   end
 
   # POST /users
@@ -42,9 +43,10 @@ class UsersController < ApplicationController
   # PATCH/PUT /admin_users/1
   # PATCH/PUT /admin_users/1.json
   def update
+    @user = current_user
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
+        format.html { redirect_to edit_user_path(id: current_user), notice: 'User was successfully updated.' }
       else
         format.html { render :edit }
       end

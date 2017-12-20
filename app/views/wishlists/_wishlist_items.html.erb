@@ -39,7 +39,7 @@
                 </td>
                 <td class="cart_delete">
                   <p class="cart_quantity_delete">
-                    <%= link_to'Remove', wishlists_destroy_path(id:item.id) %>
+                    <%= link_to'Remove', wishlist_path(id:item.id), method:"delete" %>
                   </p>
                 </td>
               </tr>

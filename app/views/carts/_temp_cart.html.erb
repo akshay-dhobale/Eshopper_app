@@ -1,0 +1,54 @@
+<section id="cart_items">
+  <div class="container">
+    <div class="breadcrumbs">
+      <ol class="breadcrumb">
+        <li><a href="/">Home</a></li>
+        <li class="active">Shopping Cart</li>
+      </ol>
+    </div>
+    <div class="table-responsive cart_info">
+      <table class="table table-condensed">
+        <thead>
+          <tr class="cart_menu">
+            <td class="image">Item</td>
+            <td class="description"></td>
+            <td class="price">Price</td>
+            <td class="quantity">Quantity</td>
+            <td class="total">Total</td>
+            <td></td>
+          </tr>
+        </thead>
+        <tbody>
+          <% @p.each do |item|%>
+            <tr id = <%= item.id%> >
+              <td class="cart_product">
+                <a href=""><%= image_tag item.product_images.first.prod_img.url %></a>
+              </td>
+              <td class="cart_description">
+                <h4><a href=""><%= item.name %></a></h4>
+              </td>
+              <td class="cart_price">
+                <p>$<%= item.price %></p>
+              </td>
+              <td class="cart_quantity">
+                <div class="cart_quantity_button">
+                  <p class="cart_quantity_up" href=""><%= link_to carts_update_path(id:item.id, value: 1),data:{remote: true} do %> + <% end %></p>
+                  <span id="quant_<%= item.id%>"><input class="cart_quantity_input " id = "quntity_change" name="quantity" value = <%= session[ item.id.to_s] %> min = "1" autocomplete="off" size="1"></span>
+                  <p class="cart_quantity_down" ><%= link_to carts_update_path(id:item.id, value:-1),data:{remote: true} do %> - <% end %>
+                  </p>
+                </div>
+              </td>
+              <td class="cart_total">
+                <p class="cart_total_price" id = "price_<%= item.id%>" >
+                $<%= (item.price*session[ item.id.to_s])  %></p>
+              </td>
+              <td class="cart_delete">
+                <p class="cart_quantity_delete"><%= link_to carts_destroy_path(id:item.id), id:"remove" do %> Remove <% end %></p>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>

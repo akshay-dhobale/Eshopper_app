@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171211130158) do
+ActiveRecord::Schema.define(version: 20171220104932) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,11 +54,11 @@ ActiveRecord::Schema.define(version: 20171211130158) do
   end
 
   create_table "carts", force: :cascade do |t|
-    t.bigint "user_id"
     t.bigint "product_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "quantity"
+    t.bigint "user_id"
     t.index ["product_id"], name: "index_carts_on_product_id"
     t.index ["user_id"], name: "index_carts_on_user_id"
   end
@@ -114,11 +114,25 @@ ActiveRecord::Schema.define(version: 20171211130158) do
     t.float "amount"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "order_id"
+    t.bigint "product_id"
+    t.index ["order_id"], name: "index_order_details_on_order_id"
+    t.index ["product_id"], name: "index_order_details_on_product_id"
   end
 
   create_table "orders", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.bigint "address_id"
+    t.bigint "coupon_id"
+    t.bigint "payment_gateway_id"
+    t.float "grand_total"
+    t.float "shipping_charges"
+    t.index ["address_id"], name: "index_orders_on_address_id"
+    t.index ["coupon_id"], name: "index_orders_on_coupon_id"
+    t.index ["payment_gateway_id"], name: "index_orders_on_payment_gateway_id"
+    t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
   create_table "payment_gateways", force: :cascade do |t|
@@ -242,6 +256,12 @@ ActiveRecord::Schema.define(version: 20171211130158) do
   add_foreign_key "brandcategories", "categories"
   add_foreign_key "carts", "products"
   add_foreign_key "carts", "users"
+  add_foreign_key "order_details", "orders"
+  add_foreign_key "order_details", "products"
+  add_foreign_key "orders", "addresses"
+  add_foreign_key "orders", "coupons"
+  add_foreign_key "orders", "payment_gateways"
+  add_foreign_key "orders", "users"
   add_foreign_key "product_attribute_assocs", "product_attribute_values"
   add_foreign_key "product_attribute_assocs", "product_attributes"
   add_foreign_key "product_attribute_assocs", "products"

@@ -30,7 +30,7 @@ class WishlistsController < ApplicationController
   def destroy
     @wishlist_item = Wishlist.find(params[:id])
     @wishlist_item.destroy
-    redirect_to wishlists_index_path 
+    redirect_to wishlists_path 
   end
 
 end

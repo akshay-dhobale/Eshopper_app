@@ -21,13 +21,13 @@
                 <% if current_user.present? %>
                   <a classs="dropdown-toggle" data-toggle="dropdown">Account</a>
                   <ul class="dropdown-menu">
-                    <li><%= link_to edit_user_registration_path(id: current_user.id) do %>Edit Account<% end %> </li>
+                    <li><%= link_to edit_user_path(id: current_user)  do %>Edit Account<% end %> </li>
                     <li><%= link_to addresses_show_path do %>Manage Addresses<% end %></li>
                   </ul>
                 <% end %>
               </li>
               <li> 
-                <%= link_to wishlists_index_path do %>
+                <%= link_to wishlists_path do %>
                   <i class="fa fa-star"></i> Wishlist
                 <% end %>
               </li>

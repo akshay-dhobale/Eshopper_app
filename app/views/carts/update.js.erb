@@ -1,2 +1,15 @@
-$("#cart_quantity_index").empty();  
-$("<%= j render 'update' %>").appendTo("#cart_quantity_index"); 
+<% if current_user.present? %>
+   $("#quant_<%= @item.id %>").html("<%= j render 'update' %>"); 
+
+   $("#price_<%= @item.id%>").html("$<%= (@item.product.price*@item.quantity)  %>");
+
+   $("#do_action").html("<%= j render 'do_action' %>"); 
+
+ <% else %>
+  
+  $("#quant_<%= params[:id] %>").html("<%= j render 'temp_update' %>"); 
+
+  $("#price_<%= params[:id] %>").html("$<%= @this_product.price*session[params[:id]] %>");
+
+  $("#do_action").html("<%= j render 'do_action' %>");
+<% end %>

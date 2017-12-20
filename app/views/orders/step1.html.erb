@@ -1,3 +1,4 @@
+<%= render "/home/header"%>
 <div class="container" >
   <p>
     <strong>Name:</strong>
@@ -41,8 +42,8 @@
       </p>
 
       <%= link_to 'Edit', edit_address_path(address), :class=> "btn btn-default" %> 
-      <%#= link_to 'Delete', addresses_destroy_path(id: address.id), :class=> "btn btn-default" %>
-      <%= link_to 'Deliver To This Address', order_path(address_id: address.id), :class=> "btn btn-default" %>
+      <%= link_to 'Delete', addresses_destroy_path(id: address.id), :class=> "btn btn-default" %>
+      <%= link_to 'Deliver To This Address', orders_step2_path(address_id: address.id), :class=> "btn btn-default" %>
     </div>  
   <% end %>
 </div>
@@ -51,3 +52,4 @@
     <%= link_to"Add new Address", new_address_path, :class=> "btn btn-default"  %>
   </p>
 </div>
+<%= render "/home/footer"%>

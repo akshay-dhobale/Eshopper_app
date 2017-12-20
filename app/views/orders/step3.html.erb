@@ -1,0 +1,25 @@
+<body>
+  <%= render "/home/header"%>
+  <div class=" container well ">
+    <h4 class="col-sm-offset-4">Select your payment option</h4><br>
+    <div class="col-sm-offset-4 well col-sm-3" id="payment_option">
+      <%= form_for :create, :url => { :method => :post, :action => :create } do|f| %>
+      <% @pay_gate.each do |pg|%>
+      <div class="radio">
+        <label><input type="radio" name="payment_option" value=<%= pg.id %> > <%= pg.name %></label>
+      </div><br>
+      
+      <% end %>
+      <%= f.submit "Place an order"%>
+      <% end %>
+    </div>
+     <script type="text/javascript">
+    //   $('#payment_option input').on('change', function() {
+    //     alert($('input[type="radio"]:checked').val()); 
+    //   });
+    // </script>
+  </div>
+   <footer id="footer">
+    <%= render "/home/footer"%>
+  </footer>
+</body>

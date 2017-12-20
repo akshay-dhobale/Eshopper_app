@@ -14,6 +14,9 @@ Rails.application.routes.draw do
   get 'carts/destroy'
 
   get 'carts/update'
+
+  post 'carts/add_coupon', to:'carts#add_coupon'
+
   # get 'subcategories/index'
 
   get 'subcategories/show'
@@ -54,12 +57,15 @@ Rails.application.routes.draw do
 
   resources :products 
 
+  resources :wishlists
+  
+  resources :users
 
-  get 'wishlists/index'
-
-  get 'wishlists/create'
-
-  get 'wishlists/destroy'
+  # resources :orders
+  post 'orders/create'
+  get 'orders/step1', to:'orders#step1'
+  get 'orders/step2', to:'orders#step2'
+  get 'orders/step3', to:'orders#step3'
 
   # resources :carts
 

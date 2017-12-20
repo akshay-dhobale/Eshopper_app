@@ -6,10 +6,11 @@ class HomeController < ApplicationController
     @productcategories = ProductCategory.all
     @products = Product.all
     @productimages = ProductImage.all
-
+    
     if current_user.present?
-      @cart_user = Cart.where(user_id: current_user.id)
-      @count = @cart_user.count()
+      @count = Cart.where(user_id: current_user.id).count()
+    #   @cart_user = Cart.where(user_id: current_user.id)
+    #   @count = @cart_user.count()
     end
   end
 end

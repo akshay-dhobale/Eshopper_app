@@ -1,0 +1,9 @@
+// $('#remove').click(function(){
+//   // event.preventDefault();
+//   $( this ).hide( 400 );
+// })
+
+$("#remove").parent().parent().parent(). hide(400);  
+
+$("#do_action").empty();  
+$("<%= j render 'do_action' %>").appendTo("#do_action"); 
