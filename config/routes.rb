@@ -1,15 +1,18 @@
 Rails.application.routes.draw do
-  get 'addresses/index'
-
-  get 'addresses/show'
-
-  get 'addresses/edit'
+  root 'home#index'
   
-  get 'addresses/destroy'
+  # get 'addresses/index'
+
+  # get 'addresses/show'
+
+  # get 'addresses/edit'
+  
+  # get 'addresses/destroy'
+  resources :addresses
 
   get 'carts/index'
 
-  get 'carts/create'
+  post 'carts/create'
 
   get 'carts/destroy'
 
@@ -46,7 +49,6 @@ Rails.application.routes.draw do
   
   # resources :users
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
-  root 'home#index'
   
   resources :banners
 
@@ -63,6 +65,7 @@ Rails.application.routes.draw do
 
   # resources :orders
   post 'orders/create'
+  get 'orders/show'
   get 'orders/step1', to:'orders#step1'
   get 'orders/step2', to:'orders#step2'
   get 'orders/step3', to:'orders#step3'

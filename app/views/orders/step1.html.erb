@@ -9,7 +9,7 @@
     <strong>E Mail:</strong>
     <%= current_user.email %>
   </p>
-  <% @address.each do |address|%>
+  <% @totaladdress.each do |address|%>
     <div class="col-sm-3 well well-sm ">
       <p>
         <strong>Address line one:</strong>
@@ -40,9 +40,10 @@
         <strong>Zip code:</strong>
         <%= address.zipcode %>
       </p>
+      
 
-      <%= link_to 'Edit', edit_address_path(address), :class=> "btn btn-default" %> 
-      <%= link_to 'Delete', addresses_destroy_path(id: address.id), :class=> "btn btn-default" %>
+      <%= link_to 'Edit',edit_address_path(address), :class=> "btn btn-default" %> 
+      <%= link_to 'Delete', address_path(id: address.id),method: "delete", :class=> "btn btn-default" %>
       <%= link_to 'Deliver To This Address', orders_step2_path(address_id: address.id), :class=> "btn btn-default" %>
     </div>  
   <% end %>

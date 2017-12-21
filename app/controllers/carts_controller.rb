@@ -24,10 +24,18 @@ class CartsController < ApplicationController
         end
       end
 
-      @a = cost_user_cart()
+      @total = cost_user_cart
     # for items in session cart
     else
-      @a = cost_session_cart()
+      # keys = session.keys
+      # @keys = keys.map(&:to_i)
+      # @products = Product.where(id: @keys)
+      # @total = 0
+      # @products.each do |product|
+      #   @total = @total + (product.price * session[product.id.to_i])
+      # end
+      @total = cost_session_cart
+      @shipping_cost = 4
     end
   end
 
@@ -57,6 +65,7 @@ class CartsController < ApplicationController
         session[product_id] ||= {}
         session[product_id] = quantity
       end
+      binding.pry
     end
   end
 
@@ -78,7 +87,7 @@ class CartsController < ApplicationController
           @item.save
       end
 
-      @a = cost_user_cart()
+      @total = cost_user_cart()
       respond_to do |format|
         format.js
       end
@@ -91,8 +100,8 @@ class CartsController < ApplicationController
         session[params[:id]] += quantity 
       end
       @this_product = Product.find(params[:id])
-     
-      @a = cost_session_cart()
+      @shipping_cost = 4
+      @total = cost_session_cart()
     end
   end
 
@@ -109,15 +118,18 @@ class CartsController < ApplicationController
   end
 
   def add_coupon
-    @a = params[:code]
     @coupon = Coupon.where(code: params[:code])
+
     @coupon.each { |coupon|
       @discount = coupon.percent_off
       session[:coupon_id] = coupon.id
     }
-    binding.pry
-    @a = cost_user_cart()
-    
+    if current_user.present?
+      @total = cost_user_cart
+    else
+      @total = cost_session_cart
+    end
+    @shipping_cost = 4
     respond_to do |format|
       format.js 
     end

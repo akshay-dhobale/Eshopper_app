@@ -20,16 +20,13 @@ module CartsHelper
   end
 
   def cost_session_cart
-    b =  session.keys 
-    @p = b.map(&:to_i)
-    a = session.values 
-    @p = Product.where(id: b)
-    # Cost of all items in session cart
-    a=0
-    @p.each do |item|
-      a = (item.price*session[item.id.to_s] + a)
-    end 
-    @shipping_cost = 4
-    @s = a
+    keys = session.keys
+    @keys = keys.map(&:to_i)
+    @products = Product.where(id: @keys)
+    @total = 0
+    @products.each do |product|
+      @total = @total + (product.price * session[product.id.to_i])
+    end
+    @total
   end
 end

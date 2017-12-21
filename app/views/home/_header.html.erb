@@ -18,41 +18,36 @@
                 <% end %>
               </li>
               <li>
-                <% if current_user.present? %>
-                  <a classs="dropdown-toggle" data-toggle="dropdown">Account</a>
+                <% if user_signed_in? %>
+                  <a classs="dropdown-toggle" data-toggle="dropdown"><%= current_user.firstname %>'s Account</a>
                   <ul class="dropdown-menu">
                     <li><%= link_to edit_user_path(id: current_user)  do %>Edit Account<% end %> </li>
-                    <li><%= link_to addresses_show_path do %>Manage Addresses<% end %></li>
+                    <li><%= link_to addresses_path do %>Manage Addresses<% end %></li>
+                    <!-- <li><%# = link_to addresses_show_path do %>My Orders<%# end %></li> -->
                   </ul>
                 <% end %>
               </li>
-              <li> 
-                <%= link_to wishlists_path do %>
-                  <i class="fa fa-star"></i> Wishlist
+              <li>
+                <% if user_signed_in? %> 
+                  <%= link_to wishlists_path do %>
+                    <i class="fa fa-star"></i> Wishlist
+                  <% end %>
                 <% end %>
               </li>
-              <li><a href="checkout.html"><i class="fa fa-crosshairs"></i> Checkout</a></li>
               <li id = "cart_count" title="All items added in cart">
                 <%= link_to carts_index_path do %>
                   <i class="fa fa-shopping-cart"></i>
-                  Cart(<%= @count %>)
+                  Cart(<% if current_user.present? %><%= @count %> <% else %> <%= session_count %> <% end %>)
                 <% end %>
               </li>
               <li>
                 <% if user_signed_in? %>
-                  <p class="btn btn-default dropdown-toggle" data-toggle="dropdown" ><%= current_user.email %></p>
-                    <ul class="dropdown-menu">
-                      <li><%= link_to destroy_user_session_path, method: :delete do %>
-                         LogOut 
-                        <% end %>
-                      </li>
-                    </ul>
+                  <li><%= link_to destroy_user_session_path, method: :delete do %>
+                     LogOut 
+                    <% end %>
+                  </li>
                 <% else %>
-                  <p class="btn btn-default dropdown-toggle" data-toggle="dropdown" >Log In</p>
-                  <ul class="dropdown-menu">
-                    <li><%= link_to new_user_session_path do %> Log In <% end %></li>
-                    <li><%= link_to user_session_path do %>Create Account <% end %></li>
-                  </ul>
+                  <li><%= link_to new_user_session_path do %> Log In <% end %></li>
                 <% end %>
               </li>
             </ul>

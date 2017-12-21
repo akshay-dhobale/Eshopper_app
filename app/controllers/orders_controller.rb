@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :authenticate_user!
+  # before_action :authenticate_user!
 
   include CartsHelper
 
@@ -12,6 +12,7 @@ class OrdersController < ApplicationController
   end
 
   def create
+    binding.pry
     if !params[:payment_option].present?
       redirect_to orders_step3_path 
     else
@@ -20,15 +21,15 @@ class OrdersController < ApplicationController
       @order.payment_gateway_id = params[:payment_option].to_i
       @order.address_id = session[:address_id].to_i
       session[:address_id] = nil
-      @a = cost_user_cart()
+      @total = cost_user_cart()
       if session[:coupon_id].present? && session[:coupon_id] != nil
       binding.pry
         @order.coupon_id = session[:coupon_id].to_i
         session[:coupon_id] = nil
         @coupon = Coupon.find(@order.coupon_id)
-        @a = @a+@a*(@coupon. percent_off/100)
+        @total = @total+@total*(@coupon. percent_off/100)
       end
-      @total_tax = @a + @a*0.1
+      @total_tax = @total + @total*0.1
       if @total_tax > 200
         @order.grand_total = @total_tax
         @order.shipping_charges = 4
@@ -49,18 +50,24 @@ class OrdersController < ApplicationController
       end
       @order_detail_products = OrderDetail.where(order_id: @order.id)
         # binding.pry
+        redirect_to orders_show_path(order_id: @order.id)
     end
   end
 
+  def show
+    @order = Order.find(params[:order_id])
+    @order_detail_products = OrderDetail.where(order_id: params[:order_id])
+  end
+
   def step1
-    @address = Address.where(user_id: current_user.id) 
+    @totaladdress = Address.where(user_id: current_user.id) 
   end
 
   def step2
     @order_address = Address.find(params[:address_id])
     session[:address_id] = params[:address_id]
     @cart_user = Cart.where(user_id: current_user.id)
-    @a = cost_user_cart()
+    @total = cost_user_cart()
     # binding.pry
   end
   

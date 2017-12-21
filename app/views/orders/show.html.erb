@@ -1,15 +1,15 @@
 <body>
   <%= render "/home/header"%>
-  <h2>Order Created </h2>
+  <h2>Order Created</h2>
   <section id="cart_items">
     <div class="container">
       <div class="breadcrumbs">
         <ol class="breadcrumb">
-          <!-- <li><a href="/">Home</a></li> -->
-          <!-- <li class="active">Shopping Cart</li> -->
+          <li><a href="/">Home</a></li>
+          <li class="active">Your Order</li>
         </ol>
       </div>
-      <div class="table-responsive cart_info">
+      <div class="table-responsive cart_info well">
         <table class="table table-condensed">
           <thead>
             <tr class="cart_menu">
@@ -29,7 +29,6 @@
                 </td>
                 <td class="cart_description">
                   <h4><a href=""><%= item.product.name %></a></h4>
-                  
                 </td>
                 <td class="cart_price">
                   <p>$<%= item.product.price %></p>
@@ -44,17 +43,15 @@
               </tr>
             <% end %>
           </tbody>
-        <div class="pull-right">
+        </table>
+        <div class="pull-right well">
+          Pay
           <p><b>Shipping Charges:</b> $<%= @order.shipping_charges%></p>
           <p><b>Grand total:</b> $<%= @order.grand_total%></p>
-          
         </div>
-        </table>
       </div>
     </div>
-    
   </section> <!--/#cart_items-->
-
   <footer id="footer">
     <%= render "/home/footer"%>
   </footer>

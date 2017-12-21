@@ -18,7 +18,7 @@
                 <p><%= prod.name%></p>
                 <p title="Click to add to your cart" class="btn btn-default add-to-cart" data-no-turbolink><i class="fa fa-shopping-cart"></i>
                   <%# if current_user.present? %>
-                    <%= link_to carts_create_path(product_id: prod.id), id:prod.id, data: { remote: true } do %>
+                    <%= link_to carts_create_path(product_id: prod.id), method:"post", id:prod.id, data: { remote: true } do %>
                         Add to cart
                     <% end %>
                   <%# else %>

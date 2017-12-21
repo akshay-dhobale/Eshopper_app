@@ -1,27 +1,31 @@
 <div class="total_area">
   <ul>
     <li>Cart Sub Total <span>
-      $ <%= @a %>
+      $ <%= @total %>
     </span></li>
     <li> Discount:<span> <%if @discount.present?%> <%= @discount%>% <% else %> none <% end %></span></li>
 
     <%if @discount.present?%>
-      <li> Discounted Amount:  <span>$<%= @a*@discount/100%>
-        <% @discount_amount = @a*@discount/100 %>
-        <% @a = @a-@discount_amount %>
+      <li> Discounted Amount:  <span>$<%= @total*@discount/100%>
+        <% @discount_amount = @total*@discount/100 %>
+        <% @total = @total-@discount_amount %>
       </span></li>
     <% end %>
     <li><p>GST</p>
-      (CGST + SGST) <span>$ <%= @a*0.1%>
-      <% @tax = @a*0.1 %>
+      (CGST + SGST) <span>$ <%= @total*0.1%>
+      <% @tax = @total*0.1 %>
     </span></li>
-
-    <li>Shipping Cost <span><% if @a<200 %>$ <%=@shipping_cost%> <% else %> Free <% end %></span></li>
-    <li>Total <span>$ <% if @a<200 %> 
-      <%= @a + (@tax) +@shipping_cost %>
-      <% else %> <%= @a + @tax  %> 
+    <li>Shipping Cost <span><% if @total<200 %>$ <%=@shipping_cost%> <% else %> Free <% end %></span></li>
+    <li>Total <span>$ <% if @total<200 %> 
+      <%= @total + @tax + @shipping_cost %>
+      <% else %> <%= @total + @tax  %> 
       <% end %></span>
     </li>
   </ul>
-  <%= link_to orders_step1_path(current_user.id), :class=>"btn btn-default update" do %>Check Out <% end %>
+    <% if current_user.present? %>
+      <%= link_to orders_step1_path(current_user.id), :class=>"btn btn-default update" do %>Check Out <% end %>
+    <% else %>
+      <%= link_to new_user_session_path, :class=>"btn btn-default update" do %> Checkout <% end %>
+    <% end %>
 </div>
+  

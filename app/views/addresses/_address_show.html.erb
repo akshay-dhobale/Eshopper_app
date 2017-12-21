@@ -41,8 +41,8 @@
       </p>
 
       <%= link_to 'Edit', edit_address_path(address), :class=> "btn btn-default" %> 
-      <%#= link_to 'Delete', addresses_destroy_path(id: address.id), :class=> "btn btn-default" %>
-      <%= link_to 'Deliver To This Address', order_path(address_id: address.id), :class=> "btn btn-default" %>
+      <%= link_to 'Delete', address_path(id: address.id), method:"delete", :class=> "btn btn-default" %>
+      <%#= link_to 'Deliver To This Address', orders_step1_path(address_id: address.id), :class=> "btn btn-default" %>
     </div>  
   <% end %>
 </div>

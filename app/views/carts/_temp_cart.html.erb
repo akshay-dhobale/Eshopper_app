@@ -19,7 +19,7 @@
           </tr>
         </thead>
         <tbody>
-          <% @p.each do |item|%>
+          <% @products.each do |item|%>
             <tr id = <%= item.id%> >
               <td class="cart_product">
                 <a href=""><%= image_tag item.product_images.first.prod_img.url %></a>
