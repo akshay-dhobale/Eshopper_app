@@ -1,0 +1,54 @@
+<body>
+  <%= render "/home/header"%>
+  <div class="container">
+    <section id="cart_items">
+      <div class="container">
+        <div class="table-responsive cart_info">
+          <% @orders.each do |order|%>
+            <% if !order.order_details.empty? %>
+              <div class="panel-group">
+                <div class="panel panel-default order_details_margin">
+                  <div class="panel-heading">
+                      <div class="row">
+                        <div class="col-sm-2">
+                          <p>Order <%= order.id%></p>  
+                          <%= link_to details_order_path(order.id) do%> Show Details <% end %>
+                        </div>
+                        <div class="col-sm-3">
+                          <p>Total Amount</p>
+                          $<%= order.grand_total%> (incl. tax + shipping charges)
+                        </div>
+                        <div class="col-sm-2">
+                          <p>Ship To</p>
+                          <p><%= order.address.address_1%>,<%= order.address.address_2%>,</p>
+                          <p><%= order.address.city%>,<%= order.address.state%>,</p><%= order.address.country%>
+                        </div>
+                        <div class="col-sm-2">
+                          <p>Order Placed</p>
+                          <%= order.created_at.strftime("%d/%m/%Y,  %H:%M:%S")%>
+                        </div>
+                      </div>  
+                    </div>
+                    <div>
+                      <% order.order_details.each do |item|%>
+                        <table class="table table-condensed">
+                          <tbody>
+                            <tr>
+                              <td class="col-sm-3"><%= image_tag item.product.product_images.first.prod_img.url %></td>
+                              <td class="col-sm-3"><%= item.product.name %><br>$<%= item.product.price %></td>
+                              <td><b>quantity: </b><%= item.quantity%></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </section> <!--/#cart_items-->
+  </div>
+</body>

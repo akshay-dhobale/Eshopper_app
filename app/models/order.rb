@@ -3,20 +3,19 @@ class Order < ApplicationRecord
   belongs_to :address
   # belongs_to :coupon
   belongs_to :payment_gateway
-  has_many :order_details
+  has_many :order_details, dependent: :destroy
 
 
-  # before_create do
-  #   @total_tax = @a + @a*0.1
+  # after_save :add_to_order_details
+  #
+  # def add_to_order_details
   #   binding.pry
-  #   if @total_tax > 200
-  #     @order.grand_total = @total_tax
-  #     @order.shipping_charges = 4
-  #     binding.pry
-  #   else
-  #     @order.grand_total = @total_tax + 4
-  #     @order.shipping_charges = 0
-  #     binding.pry
-  #   end
+  # #   @user_cart = Cart.where(user_id: current_user.id)
+  # #   @user_cart.each do |cart_item|
+  # #     @order_details = OrderDetail.create(order_id:@order.id, product_id:cart_item.product_id, quantity:cart_item.quantity)
+  # #     @order_details.save
+  # #     cart_item.delete
+  #   # end
+    
   # end
 end

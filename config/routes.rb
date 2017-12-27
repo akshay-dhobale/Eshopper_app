@@ -63,13 +63,14 @@ Rails.application.routes.draw do
   
   resources :users
 
-  # resources :orders
-  post 'orders/create'
-  get 'orders/show'
-  get 'orders/step1', to:'orders#step1'
-  get 'orders/step2', to:'orders#step2'
-  get 'orders/step3', to:'orders#step3'
-
+  resources :orders do 
+  # post 'orders/create'
+  # get 'orders/show'
+    get 'details', on: :member
+  end
+  post 'orders/step1', to:'orders#step1'
+  post 'orders/step2', to:'orders#step2'
+  post 'orders/step3', to:'orders#step3'
   # resources :carts
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

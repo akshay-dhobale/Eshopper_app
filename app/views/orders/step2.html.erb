@@ -79,7 +79,7 @@
             <% end %></span>
           </li>
         </ul>
-        <%= link_to orders_step3_path(address_id: @order_address.id), :class=>"btn btn-default update" do %>Payment <% end %>
+        <%= link_to orders_step3_path(address_id: @order_address.id), method: "post", :class=>"btn btn-default update" do %>Payment <% end %>
       </div>
     </div>
   </div>

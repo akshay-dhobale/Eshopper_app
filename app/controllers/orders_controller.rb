@@ -4,7 +4,8 @@ class OrdersController < ApplicationController
   include CartsHelper
 
   def index
-    
+    @orders = Order.where(user_id: current_user.id)
+    @user_order_details = OrderDetail.where(order_id: @orders.ids)
   end
 
   def new
@@ -12,7 +13,7 @@ class OrdersController < ApplicationController
   end
 
   def create
-    binding.pry
+    # binding.pry
     if !params[:payment_option].present?
       redirect_to orders_step3_path 
     else
@@ -32,12 +33,10 @@ class OrdersController < ApplicationController
       @total_tax = @total + @total*0.1
       if @total_tax > 200
         @order.grand_total = @total_tax
-        @order.shipping_charges = 4
-        binding.pry
+        @order.shipping_charges = 0
       else
         @order.grand_total = @total_tax + 4
-        @order.shipping_charges = 0
-        binding.pry
+        @order.shipping_charges = 4
       end
 
       # @order = Order.create(orders_params)
@@ -48,15 +47,13 @@ class OrdersController < ApplicationController
         @order_details.save
         cart_item.delete
       end
-      @order_detail_products = OrderDetail.where(order_id: @order.id)
-        # binding.pry
-        redirect_to orders_show_path(order_id: @order.id)
+        redirect_to order_path(id: @order.id)
     end
   end
 
   def show
-    @order = Order.find(params[:order_id])
-    @order_detail_products = OrderDetail.where(order_id: params[:order_id])
+    @order = Order.find(params[:id])
+    @order_detail_products = OrderDetail.where(order_id: @order.id)
   end
 
   def step1
@@ -76,6 +73,11 @@ class OrdersController < ApplicationController
     @pay_gate = PaymentGateway.all
   end
   
+  def details
+    @order = Order.find(params[:id])
+    @order_detail_products = OrderDetail.where(order_id: @order.id)
+  end
+
   private
   def orders_params
     params.require(:orders).permit(:user_id, :address_id, :coupon_id,:payment_gateway_id, :payment_option)

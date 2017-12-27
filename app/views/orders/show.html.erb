@@ -46,8 +46,8 @@
         </table>
         <div class="pull-right well">
           Pay
-          <p><b>Shipping Charges:</b> $<%= @order.shipping_charges%></p>
-          <p><b>Grand total:</b> $<%= @order.grand_total%></p>
+          <p><b><strong>Grand total:</strong></b> $<%= @order.grand_total%></p>
+          <p>Shipping Charges: $<%= @order.shipping_charges%></p>
         </div>
       </div>
     </div>
@@ -56,3 +56,4 @@
     <%= render "/home/footer"%>
   </footer>
 </body>
+

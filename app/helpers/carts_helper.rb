@@ -18,7 +18,7 @@ module CartsHelper
   def cost_with_tax
     @p*0.1
   end
-
+  
   def cost_session_cart
     keys = session.keys
     @keys = keys.map(&:to_i)

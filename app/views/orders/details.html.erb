@@ -1,0 +1,92 @@
+<body>
+  <%= render "/home/header"%>
+  <div class="container">
+    <div class="invoice-title">
+        <h3 class="center">Payment Due $<%= @order.grand_total%></h3>
+      <h3 class="pull-right">Order #<%= @order.id%></h3>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-xs-6">
+        <address>
+        <strong>Billed To: <%= @order.user.firstname%> <%= @order.user.lastname%></strong> <br>
+          <p><%= @order.address.address_1%>,<br><%= @order.address.address_2%>,<br>
+          <%= @order.address.city%>,<br><%= @order.address.state%>,<br><%= @order.address.country%>
+        </address>
+      </div>
+      <div class="col-xs-6 text-right">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-6">
+        <address>
+          <strong>Payment Method:</strong><br>
+          <%= @order.payment_gateway.name%><br>
+          <%= @order.user.email%>
+        </address>
+      </div>
+      <div class="col-xs-6 text-right">
+        <address>
+          <strong>Order Date:</strong><br>
+          <br><%= @order.created_at.strftime("%d/%m/%Y,  %H:%M:%S")%><br>
+        </address>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"><strong>Order summary</strong></h3>
+      </div>
+      <div class="panel-body">
+        <div class="table-responsive">
+          <table class="table table-condensed">
+            <thead>
+              <tr>
+                <td><strong>Item</strong></td>
+                <td class="text-center"><strong>Price</strong></td>
+                <td class="text-center"><strong>Quantity</strong></td>
+                <td class="text-right"><strong>Totals</strong></td>
+              </tr>
+            </thead>
+            <tbody>
+              <% subtotal = 0%>
+              <% @order.order_details.each do |item|%>
+                <tr>
+                  <td><%= item.product.name%></td>
+                  <td class="text-center">$<%= item.product.price%></td>
+                  <td class="text-center"><%= item.quantity%></td>
+                  <td class="text-right">$<%= item.product.price* item.quantity %></td>
+                  <% subtotal = subtotal + (item.product.price* item.quantity)%>
+                </tr>
+              <% end %>
+              <tr>
+                <td></td>
+                <td></td>
+                <td class="text-center"><b>Subtotal</b></td>
+                <td class="text-right">$<%= subtotal%></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td class="text-center"><b>Shipping Cost</b></td>
+                <td class="text-right">$<%= @order.shipping_charges%></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td class="text-center"><b>GST</b></td>
+                <td class="text-right">$<%= subtotal*0.1 %></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td class="text-center"><b>Grand Total</b></td>
+                <td class="text-right">$<%= @order.grand_total%></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <%= render "/home/footer"%>
+</body>
