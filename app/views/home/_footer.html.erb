@@ -86,16 +86,16 @@
           <h2>Service</h2>
           <ul class="nav nav-pills nav-stacked">
             <li><a href="#">Online Help</a></li>
-            <li><a href="#">Contact Us</a></li>
+            <li><%= link_to new_contact_u_path do %>Contact Us <% end %></li>
             <li><a href="#">Order Status</a></li>
             <li><a href="#">Change Location</a></li>
-            <li><a href="#">FAQ’s</a></li>
+            <li><%= link_to cms_path(value: "faq") do %>FAQ’s <% end%></li>
           </ul>
         </div>
       </div>
       <div class="col-sm-2">
         <div class="single-widget">
-          <h2>Quock Shop</h2>
+          <h2>Quick Shop</h2>
           <ul class="nav nav-pills nav-stacked">
             <li><a href="#">T-Shirt</a></li>
             <li><a href="#">Mens</a></li>
@@ -109,9 +109,9 @@
         <div class="single-widget">
           <h2>Policies</h2>
           <ul class="nav nav-pills nav-stacked">
-            <li><a href="#">Terms of Use</a></li>
+            <li><%= link_to cms_path(value: "terms_and_conditions") do %>Terms and Conditions<% end %></li>
             <li><a href="#">Privecy Policy</a></li>
-            <li><a href="#">Refund Policy</a></li>
+            <li><%= link_to cms_path(value: "refund_policy") do %>Refund Policy<% end %></li>
             <li><a href="#">Billing System</a></li>
             <li><a href="#">Ticket System</a></li>
           </ul>
@@ -121,7 +121,7 @@
         <div class="single-widget">
           <h2>About Shopper</h2>
           <ul class="nav nav-pills nav-stacked">
-            <li><a href="#">Company Information</a></li>
+            <li><%= link_to cms_path(value: "company_information") do %>Company Information <% end%></li>
             <li><a href="#">Careers</a></li>
             <li><a href="#">Store Location</a></li>
             <li><a href="#">Affillate Program</a></li>
@@ -132,11 +132,13 @@
       <div class="col-sm-3 col-sm-offset-1">
         <div class="single-widget">
           <h2>About Shopper</h2>
-          <form action="#" class="searchform">
-            <input type="text" placeholder="Your email address" />
+          <!-- <form action="#" class="searchform"> -->
+          <%= form_for :newsletter, :url => { :method => :post, :controller => :home, :action => :newsletter } do |form|%>
+            <input type="email" name="email" placeholder="Your email address" />
             <button type="submit" class="btn btn-default"><i class="fa fa-arrow-circle-o-right"></i></button>
-            <p>Get the most recent updates from <br />our site and be updated your self...</p>
-          </form>
+          <% end %>
+          <p>Get the most recent updates from <br />our site and be updated your self...</p>
+          <!-- </form> -->
         </div>
       </div>
     </div>
@@ -151,3 +153,4 @@
     </div>
   </div>
 </div>
+

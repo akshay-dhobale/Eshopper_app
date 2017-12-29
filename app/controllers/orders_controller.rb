@@ -23,8 +23,8 @@ class OrdersController < ApplicationController
       @order.address_id = session[:address_id].to_i
       session[:address_id] = nil
       @total = cost_user_cart()
-      if session[:coupon_id].present? && session[:coupon_id] != nil
       binding.pry
+      if session[:coupon_id].present? && session[:coupon_id] != nil
         @order.coupon_id = session[:coupon_id].to_i
         session[:coupon_id] = nil
         @coupon = Coupon.find(@order.coupon_id)

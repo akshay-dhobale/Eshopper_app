@@ -31,6 +31,7 @@ Rails.application.routes.draw do
   get 'brands/show'
 
   get 'home/index'
+  post 'home/newsletter'
 
   get 'brandcategories/show'
 
@@ -63,6 +64,10 @@ Rails.application.routes.draw do
   
   resources :users
 
+  # resources :newsletters
+  resources :contact_us
+
+  resources :cms
   resources :orders do 
   # post 'orders/create'
   # get 'orders/show'

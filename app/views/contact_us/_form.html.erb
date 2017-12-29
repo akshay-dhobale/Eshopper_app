@@ -1,0 +1,35 @@
+<section><!--form-->
+  <div class="container card">
+    <div class="row bg-red">
+      <div class="col-sm-4 col-sm-offset-4 bg-dark">
+        <div class="login-form">
+          <%= form_with(model: @contact_message, method:"post") do |form| %>
+            <h1>Contact Us</h1>
+            <p class="panel-body">
+              <%= form.label :Name %><br>
+              <%= form.text_field :name %>
+            </p>
+            <p class="panel-body">
+              <%= form.label :email %><br>
+              <%= form.email_field :email %>
+            </p>
+            <p class="panel-body">
+              <%= form.label :Contact_number %><br>
+              <%= form.text_field :contact_no %>
+            </p>
+            <p class="panel-body">
+              <%= form.label :Message %><br>
+              <%= form.text_area :message %>
+            </p>
+            
+            <div>
+              <p>
+                <%= form.submit "Submit", :class=>"btn btn-default update" %>
+              </p>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</session>

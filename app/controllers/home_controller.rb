@@ -13,4 +13,18 @@ class HomeController < ApplicationController
     #   @count = @cart_user.count()
     end
   end
+
+  def newsletter
+    @newsletter_email = Newsletter.find_by(email: params[:email])
+    if @newsletter_email.present?
+    else
+      @newsletter_sub = Newsletter.create(email: params[:email])
+    end
+    redirect_to root_path
+  end
+
+  private
+    def home_params
+      params.require(:home).permit(:email)
+    end
 end

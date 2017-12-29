@@ -23,7 +23,11 @@
     </li>
   </ul>
     <% if current_user.present? %>
-      <%= link_to orders_step1_path, method: "post", :class=>"btn btn-default update" do %>Check Out <% end %>
+      <% if @total > 1 %>
+        <%= link_to orders_step1_path, method: "post", :class=>"btn btn-default update" do %>Check Out <% end %>
+      <% else %>
+        <%= link_to root_path, :class=>"btn btn-default update" do %>Check Out <% end %>
+      <% end %>
     <% else %>
       <%= link_to new_user_session_path, :class=>"btn btn-default update" do %> Checkout <% end %>
     <% end %>

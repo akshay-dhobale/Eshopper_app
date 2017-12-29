@@ -1,19 +1,12 @@
 
 <body>
   <%= render 'home/header' %>
-  <%# if @count != 0%>
-    <% if current_user.present? %>
+  <% if current_user.present? %>
     <%= render 'cart_items'%>
-    <% else%>
+  <% else%>
     <%= render 'temp_cart'%>
-    <% end %>
-    <%= render 'do_action'%>
-  <%else%>
-   <!--  <div class="container">
-      <h2> Don't Have Any Product Added In Cart</h2>
-      <p class="btn btn-default update"><%#= link_to root_path do %>Continue Shopping <%# end %></p>
-    </div> -->
-  <%# end %>
+  <% end %>
+  <%= render 'do_action'%>
   <div> 
     
   </div>

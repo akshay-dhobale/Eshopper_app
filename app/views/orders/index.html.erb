@@ -34,7 +34,7 @@
                         <table class="table table-condensed">
                           <tbody>
                             <tr>
-                              <td class="col-sm-3"><%= image_tag item.product.product_images.first.prod_img.url %></td>
+                              <td class="col-sm-3"><%= image_tag item.product.product_images.first.prod_img.url, size: "100x100"  %></td>
                               <td class="col-sm-3"><%= item.product.name %><br>$<%= item.product.price %></td>
                               <td><b>quantity: </b><%= item.quantity%></td>
                             </tr>
