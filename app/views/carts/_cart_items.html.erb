@@ -23,10 +23,10 @@
             <%# if item.user_id == @user %>
               <tr >
                 <td class="cart_product">
-                  <a href=""><%= image_tag item.product.product_images.first.prod_img.url %></a>
+                  <a href=""><%= image_tag item.product.product_images.first.prod_img.url,size: "100x100" %></a>
                 </td>
                 <td class="cart_description">
-                  <h4><a href=""><%= item.product.name %></a></h4>
+                  <h4><%= link_to products_show_path(id:item.product.id) do %><%= item.product.name %><% end %></h4>
                   
                 </td>
                 <td class="cart_price">
@@ -54,4 +54,5 @@
       </table>
     </div>
   </div>
+
 </section> <!--/#cart_items-->

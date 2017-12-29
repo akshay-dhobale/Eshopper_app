@@ -23,29 +23,30 @@ class OrdersController < ApplicationController
       @order.address_id = session[:address_id].to_i
       session[:address_id] = nil
       @total = cost_user_cart()
-      binding.pry
       if session[:coupon_id].present? && session[:coupon_id] != nil
         @order.coupon_id = session[:coupon_id].to_i
         session[:coupon_id] = nil
-        @coupon = Coupon.find(@order.coupon_id)
-        @total = @total+@total*(@coupon. percent_off/100)
+        # @coupon = Coupon.find(@order.coupon_id)
+        # @total = @total-@total*(@coupon. percent_off/100)
       end
-      @total_tax = @total + @total*0.1
-      if @total_tax > 200
-        @order.grand_total = @total_tax
+      # @total_tax = @total + @total*0.1
+      if @total > 200
+        @order.grand_total = @total
         @order.shipping_charges = 0
       else
-        @order.grand_total = @total_tax + 4
+        @order.grand_total = @total + 4
         @order.shipping_charges = 4
       end
 
       # @order = Order.create(orders_params)
-      @order.save
-      @user_cart = Cart.where(user_id: current_user.id)
-      @user_cart.each do |cart_item|
-        @order_details = OrderDetail.create(order_id:@order.id, product_id:cart_item.product_id, quantity:cart_item.quantity)
-        @order_details.save
-        cart_item.delete
+      if @order.save
+        @user_cart = Cart.where(user_id: current_user.id)
+        @user_cart.each do |cart_item|
+          @order_details = OrderDetail.create(order_id:@order.id, product_id:cart_item.product_id, quantity:cart_item.quantity, amount:cart_item.product.price*cart_item.quantity)
+          @order_details.save
+          cart_item.delete
+        end
+        OrderMailer.order_created(@order, @order.order_details).deliver_now
       end
         redirect_to order_path(id: @order.id)
     end
@@ -55,26 +56,12 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
     @order_detail_products = OrderDetail.where(order_id: @order.id)
   end
-
-  def step1
-    @totaladdress = Address.where(user_id: current_user.id) 
-  end
-
-  def step2
-    @order_address = Address.find(params[:address_id])
-    session[:address_id] = params[:address_id]
-    @cart_user = Cart.where(user_id: current_user.id)
-    @total = cost_user_cart()
-    # binding.pry
-  end
-  
-  def step3
-    # @order_address = Address.find(params[:address_id])
-    @pay_gate = PaymentGateway.all
-  end
   
   def details
     @order = Order.find(params[:id])
+    if @order.coupon_id != nil
+      @coupon_used = Coupon.find(@order.coupon_id)
+    end
     @order_detail_products = OrderDetail.where(order_id: @order.id)
   end
 

@@ -5,12 +5,18 @@
         <p>Choose if you have a discount code or reward points you want to use or would like to estimate your delivery cost.</p>
       </div>
       <div class="row">
-        <div class="col-sm-6">
+        <div class="col-sm-6" >
           <div class="chose_area">
             <%= form_for :add_coupon, :url => { :method => :get, :action => :add_coupon },remote: true do|f|%>
-              <input type="text" name="code">
+              <input type="text" name="code" <% if @coupon.present? %> value=<%= @coupon.code%> <%end%>>
               <!-- <input type="submit"> -->
-              <%= f.submit "Apply", data:{remote: true} %>
+              <span id="coupon_button">
+                <% if session[:coupon_id].present? && session[:coupon_id] != nil %>
+                  <%= f.submit "remove", data:{remote: true} %>
+                <% else %>
+                  <%= f.submit "Apply", data:{remote: true} %>
+                <% end %>
+              </span>
             <% end %>
           </div>
         </div>

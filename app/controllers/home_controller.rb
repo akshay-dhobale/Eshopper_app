@@ -9,6 +9,7 @@ class HomeController < ApplicationController
     
     if current_user.present?
       @count = Cart.where(user_id: current_user.id).count()
+    else
     #   @cart_user = Cart.where(user_id: current_user.id)
     #   @count = @cart_user.count()
     end

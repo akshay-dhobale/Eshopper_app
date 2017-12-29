@@ -1,14 +1,23 @@
 class AddressesController < ApplicationController
   
   def new
+    @flag = params[:flag]
     @address = Address.new
+    binding.pry
   end
 
   def create
     @address = Address.create(address_params)
     @address.user_id = current_user.id
+    # @flag = params[:flag]
+    binding.pry
     @address.save!
-    render :back
+    # render :back
+    if params[:flag] == "checkout"
+      redirect_to checkouts_payment_review_path(address_id: @address.id)
+    else
+      redirect_to addresses_path
+    end
     # redirect_to addresses_path
   end
 
@@ -21,27 +30,36 @@ class AddressesController < ApplicationController
   end
 
   def edit
+    @flag = params[:flag]
     @address = Address.find(params[:id])
-    binding.pry
   end
 
   def update
-    binding.pry
     @address = Address.find(params[:id])
     @address.update(address_params)
-    redirect_to :back
+    if params[:flag] == "checkout"
+      redirect_to checkouts_payment_review_path(address_id: @address.id)
+    else
+      redirect_to addresses_path
+    end
+    # redirect_to checkouts_payment_review_path(address_id: @address.id)
     # redirect_to addresses_path 
   end
 
   def destroy
     @address = Address.find(params[:id])
+    @flag = params[:flag]
     @address.destroy
-    redirect_to addresses_path
+    if @flag.present?
+      redirect_to checkouts_address_select_path(user_id: current_user.id)
+    else
+      redirect_to addresses_path
+    end
   end
 
   private
 
     def address_params
-      params.require(:address).permit(:user_id, :address_1, :address_2, :city, :country, :state, :zipcode)
+      params.require(:address).permit(:user_id, :address_1, :address_2, :city, :country, :state, :zipcode, :flag)
     end
 end

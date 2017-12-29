@@ -65,12 +65,12 @@ class CartsController < ApplicationController
         session[product_id] ||= {}
         session[product_id] = quantity
       end
-      binding.pry
+      # binding.pry`
     end
   end
 
   def show
-
+    
   end
 
   def update
@@ -118,12 +118,16 @@ class CartsController < ApplicationController
   end
 
   def add_coupon
-    @coupon = Coupon.where(code: params[:code])
+    if params[:commit] == "remove"
+      session[:coupon_id] = nil
+    else
+      @coupon = Coupon.where(code: params[:code])
 
-    @coupon.each { |coupon|
-      @discount = coupon.percent_off
-      session[:coupon_id] = coupon.id
-    }
+      @coupon.each { |coupon|
+        @discount = coupon.percent_off
+        session[:coupon_id] = coupon.id
+      }
+    end
     if current_user.present?
       @total = cost_user_cart
     else

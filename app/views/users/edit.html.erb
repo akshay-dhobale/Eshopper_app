@@ -14,17 +14,11 @@
               <%= f.label :Lastname %><br />
               <%= f.text_field :lastname %>
 
-              <%= f.label :email %><br />
-              <%= f.email_field :email %>
-
               <button type="submit" class="btn btn-default">Update</button>
             <% end %>
           </div>
         </div>
       </div>
-      <%= link_to edit_user_registration_path(current_user.id), :class=>"btn btn-default col-sm-offset-4 order_details_margin" do %>
-        Change Password 
-      <% end %>
     </div>
   </section>
 <footer id="footer"><!--Footer-->

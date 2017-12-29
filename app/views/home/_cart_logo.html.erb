@@ -1,5 +1,5 @@
+
 <%= link_to carts_index_path do %>
- <%# binding.pry%>
   <i class="fa fa-shopping-cart"></i>
-  Cart(<%= @count %>)
+  Cart(<% if current_user.present? %><%= @count %> <% else %> <%= session_count %> <% end %>)
 <% end %>

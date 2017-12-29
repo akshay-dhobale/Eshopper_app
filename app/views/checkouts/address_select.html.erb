@@ -42,15 +42,15 @@
       </p>
       
 
-      <%= link_to 'Edit',edit_address_path(address), :class=> "btn btn-default" %> 
-      <%= link_to 'Delete', address_path(id: address.id),method: "delete", :class=> "btn btn-default" %>
-      <%= link_to 'Deliver To This Address', orders_step2_path(address_id: address.id), method:"post", :class=> "btn btn-default" %>
+      <%= link_to 'Edit',edit_address_path(address, flag: "checkout"), :class=> "btn btn-default" %> 
+      <%= link_to 'Delete', address_path(id: address.id, flag: "checkout"),method: "delete", :class=> "btn btn-default" %>
+      <%= link_to 'Deliver To This Address', checkouts_payment_review_path(address_id: address.id), :class=> "btn btn-default" %>
     </div>  
   <% end %>
 </div>
 <div class="container">
   <p>
-    <%= link_to"Add new Address", new_address_path, :class=> "btn btn-default"  %>
+    <%= link_to"Add new Address & Use", new_address_path(flag: "checkout"), :class=> "btn btn-default"  %>
   </p>
 </div>
 <%= render "/home/footer"%>

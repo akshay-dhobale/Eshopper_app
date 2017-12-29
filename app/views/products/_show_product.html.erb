@@ -28,7 +28,7 @@
     <div class="product-information"><!--/product-information-->
       <img src="/assets/product-details/new.jpg" class="newarrival" alt="" />
       <h2><%= @product.name%></h2>
-      <p>Web ID: 1089772</p>
+      <p>Product ID: <%= @product.id %></p>
       <img src="/assets/product-details/rating.png" alt="" />
       <span>
         <span>US $<%= @product.price%></span>
@@ -43,7 +43,7 @@
         <%#end%>
         <p class="btn btn-default add-to-cart" data-no-turbolink>
           <i class="fa fa-shopping-cart"></i>
-          <%= link_to carts_create_path(product_id: @product.id), id:@product.id, data: { remote: true } do %>
+          <%= link_to carts_create_path(product_id: @product.id), method:"post", id:@product.id, data: { remote: true } do %>
           Add to cart
           <% end %>
         </p>

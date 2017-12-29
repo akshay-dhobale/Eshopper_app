@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  get 'checkouts/address_select'
+
+  get 'checkouts/payment_review'
+
+  get 'checkouts/payment_option'
+
+  get 'checkouts/add_address'
+
   root 'home#index'
   
   # get 'addresses/index'
@@ -53,6 +61,7 @@ Rails.application.routes.draw do
   
   resources :banners
 
+  # resources :checkouts
   # get 'categories/show'
   resources :categories
 

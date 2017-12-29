@@ -1,5 +1,4 @@
 <body>
-  <%= render "/home/header"%>
   <div class="container">
     <div class="invoice-title">
         <h3 class="center">Payment Due $<%= @order.grand_total%></h3>
@@ -41,6 +40,7 @@
           <table class="table table-condensed">
             <thead>
               <tr>
+                <td><strong></strong></td>
                 <td><strong>Item</strong></td>
                 <td class="text-center"><strong>Price</strong></td>
                 <td class="text-center"><strong>Quantity</strong></td>
@@ -49,8 +49,9 @@
             </thead>
             <tbody>
               <% subtotal = 0%>
-              <% @order.order_details.each do |item|%>
+              <% @order_details.each do |item|%>
                 <tr>
+                  <td><%= image_tag item.product.product_images.first.prod_img.url,size: "100x100" %></td>
                   <td><%= item.product.name%></td>
                   <td class="text-center">$<%= item.product.price%></td>
                   <td class="text-center"><%= item.quantity%></td>
@@ -61,18 +62,12 @@
               <tr>
                 <td></td>
                 <td></td>
+                <td></td>
                 <td class="text-center"><b>Subtotal</b></td>
                 <td class="text-right">$<%= subtotal%></td>
               </tr>
-              <% if @coupon_used != nil %>
-                <tr>
-                  <td></td>
-                  <td></td>
-                  <td class="text-center"><b>Discount</b></td>
-                  <td class="text-right"><%= @coupon_used.percent_off %></td>
-                </tr>
-              <% end %>
               <tr>
+                <td></td>
                 <td></td>
                 <td></td>
                 <td class="text-center"><b>Shipping Cost</b></td>
@@ -81,10 +76,12 @@
               <tr>
                 <td></td>
                 <td></td>
-                <td class="text-center"><b><p>GST</p>(CGST[5.0%]+SGST[5.0%]):</b></td>
-                <td class="text-right"><br><p></p>$<%= subtotal*0.1 %></td>
+                <td></td>
+                <td class="text-center"><b>GST</b></td>
+                <td class="text-right">$<%= subtotal*0.1 %></td>
               </tr>
               <tr>
+                <td></td>
                 <td></td>
                 <td></td>
                 <td class="text-center"><b>Grand Total</b></td>
@@ -96,5 +93,4 @@
       </div>
     </div>
   </div>
-  <%= render "/home/footer"%>
 </body>

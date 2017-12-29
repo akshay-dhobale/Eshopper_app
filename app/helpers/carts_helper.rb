@@ -4,14 +4,17 @@ module CartsHelper
     # @cart_items = Cart.all
     @cart_user = Cart.where(user_id: current_user.id)
     @count = @cart_user.count()
-    # Cost of all items in session cart
-    a=0
+    @total=0
 
     @cart_user.each do |item|
-      a = (item.product.price*item.quantity + a)
+      @total = (item.product.price*item.quantity + @total)
     end 
+    if session[:coupon_id].present? && session[:coupon_id] != nil
+      coupon_id = session[:coupon_id].to_i
+      @coupon = Coupon.find(coupon_id)
+    end
     @shipping_cost = 4
-    @p = a
+    @total
     # return @p
   end
   
@@ -26,6 +29,10 @@ module CartsHelper
     @total = 0
     @products.each do |product|
       @total = @total + (product.price * session[product.id.to_i])
+    end
+     if session[:coupon_id].present? && session[:coupon_id] != nil
+      coupon_id = session[:coupon_id].to_i
+      @coupon = Coupon.find(coupon_id)
     end
     @total
   end
