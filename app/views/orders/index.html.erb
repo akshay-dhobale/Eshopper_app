@@ -24,9 +24,40 @@
                           <p><%= order.address.city%>,<%= order.address.state%>,</p><%= order.address.country%>
                         </div>
                         <div class="col-sm-2">
-                          <p>Order Placed</p>
+                          <p>Ordered</p>
                           <%= order.created_at.strftime("%d/%m/%Y,  %H:%M:%S")%>
                         </div>
+                        <!-- <div class="progress">
+                          <div class="progress-bar" role="progressbar" aria-valuenow="70"
+                          aria-valuemin="0" aria-valuemax="100" style="width:10%">
+                            <span class="sr-only">70% Complete</span>
+                          </div>
+                        </div> -->
+                        <div>
+                          <p>Order Status:  <%= order.status%></p>
+                          <div class="progress">
+                            <% if order.status == "Ordered" %>
+                            <div class="progress progress-bar progress-bar-success progress-bar-striped active" style="width:33.3%;">
+                            </div>
+
+                            <% elsif order.status == "Shipped" %>
+                            <div class="progress-bar progress-bar-info progress-bar-striped active" style="width:66.6%;">
+                            </div>
+
+                            <% elsif order.status == "Delivered" %>
+                            <div class="progress progress-bar progress-bar-success progress-bar-striped active" style="width:100%;">
+                            </div>
+
+                            <% elsif order.status == "Cancelled" %>
+                            <div class="progress-bar progress-bar-danger progress-bar-striped active" style="width:100%;">
+                            </div>
+                            <% end %>
+                          </div>
+                        </div>
+                        <!-- <div>
+                          <p>Order Status</p>
+                          <%#= order.status%>
+                        </div> -->
                       </div>  
                     </div>
                     <div>
@@ -50,5 +81,11 @@
         </div>
       </div>
     </section> <!--/#cart_items-->
+    <div class="container">
+      <%= line_chart User.group_by_day(:created_at).count %>
+      <%= column_chart Order.group_by_month_of_year(:created_at, format: "%a").count %>
+      <%= pie_chart Order.group_by_day(:created_at).count %>
+    </div>
   </div>
+  <%= render '/home/footer'%>
 </body>

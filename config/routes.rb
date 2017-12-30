@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  get 'reports/sales_report'
+
+  get 'reports/customer_registered'
+
+  get 'reports/coupons_used'
+
+  get 'reports/index'
+
   get 'checkouts/address_select'
 
   get 'checkouts/payment_review'

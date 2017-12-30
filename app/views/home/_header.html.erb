@@ -17,6 +17,12 @@
                   <% end %>
                 <% end %>
               </li>
+              <li><% if user_signed_in? %>
+                <% if current_user.permission == true %>
+                  <%= link_to reports_index_path do%> Reports <%end%>
+                  <% end %>
+                <% end %>
+              </li>
               <li>
                 <% if user_signed_in? %>
                   <a classs="dropdown-toggle" data-toggle="dropdown"> Account</a>

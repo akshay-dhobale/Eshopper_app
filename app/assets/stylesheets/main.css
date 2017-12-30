@@ -2520,6 +2520,17 @@ h2.title {
 .contact-info .social-networks ul li a:hover{
   color: #FE980F;
 }
+
 .order_details_margin{
   margin-top: 10px;
+}
+
+.progress {
+  height: 10px;
+}
+
+.report_title{
+  color:#c0392b;
+  font-family:Trebuchet MS,Helvetica,sans-serif;
+  font-size:28px;
 }

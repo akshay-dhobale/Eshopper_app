@@ -15,7 +15,6 @@ module CartsHelper
     end
     @shipping_cost = 4
     @total
-    # return @p
   end
   
   def cost_with_tax

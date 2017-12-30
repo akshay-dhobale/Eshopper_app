@@ -6,6 +6,27 @@
       <h3 class="pull-right">Order #<%= @order.id%></h3>
     </div>
     <hr>
+    <div>
+      <p>Order Status:  <%= @order.status%></p>
+      <div class="progress">
+        <% if @order.status == "Ordered" %>
+        <div class="progress progress-bar progress-bar-success progress-bar-striped active" style="width:33.3%;">
+        </div>
+
+        <% elsif @order.status == "Shipped" %>
+        <div class="progress-bar progress-bar-info progress-bar-striped active" style="width:66.6%;">
+        </div>
+
+        <% elsif @order.status == "Delivered" %>
+        <div class="progress progress-bar progress-bar-success progress-bar-striped active" style="width:100%;">
+        </div>
+
+        <% elsif @order.status == "Cancelled" %>
+        <div class="progress-bar progress-bar-danger progress-bar-striped active" style="width:100%;">
+        </div>
+        <% end %>
+      </div>
+    </div>
     <div class="row">
       <div class="col-xs-6">
         <address>
@@ -69,7 +90,8 @@
                   <td></td>
                   <td></td>
                   <td class="text-center"><b>Discount</b></td>
-                  <td class="text-right"><%= @coupon_used.percent_off %></td>
+                  <td class="text-right"><%= @coupon_used.percent_off %>%</td>
+                  <% subtotal= subtotal - subtotal*@coupon_used.percent_off/100 %>
                 </tr>
               <% end %>
               <tr>

@@ -4,7 +4,9 @@ class OrdersController < ApplicationController
   include CartsHelper
 
   def index
-    @orders = Order.where(user_id: current_user.id)
+    # @orders = Order.where(user_id: current_user.id)
+    # @orders = @orders.sort_by &:created_at
+    @orders = current_user.orders
     @user_order_details = OrderDetail.where(order_id: @orders.ids)
   end
 
@@ -37,9 +39,13 @@ class OrdersController < ApplicationController
         @order.grand_total = @total + 4
         @order.shipping_charges = 4
       end
+      @order.status = "Ordered"
 
       # @order = Order.create(orders_params)
       if @order.save
+        if @order.coupon_id != nil
+          @coupons_used = CouponsUsed.create(user_id: @order.user_id, order_id: @order.id, coupon_id: @order.coupon_id)
+        end
         @user_cart = Cart.where(user_id: current_user.id)
         @user_cart.each do |cart_item|
           @order_details = OrderDetail.create(order_id:@order.id, product_id:cart_item.product_id, quantity:cart_item.quantity, amount:cart_item.product.price*cart_item.quantity)
@@ -67,6 +73,6 @@ class OrdersController < ApplicationController
 
   private
   def orders_params
-    params.require(:orders).permit(:user_id, :address_id, :coupon_id,:payment_gateway_id, :payment_option)
+    params.require(:orders).permit(:user_id, :address_id, :coupon_id,:payment_gateway_id, :payment_option, :status)
   end
 end

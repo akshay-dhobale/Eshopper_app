@@ -66,12 +66,22 @@
                 <td class="text-center"><b>Subtotal</b></td>
                 <td class="text-right">$<%= subtotal%></td>
               </tr>
+              <% if @coupon_used != nil %>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td class="text-center"><b>Discount</b></td>
+                  <td class="text-right"><%= @coupon_used.percent_off %>%</td>
+                </tr>
+              <% end %>
               <tr>
                 <td></td>
                 <td></td>
                 <td></td>
                 <td class="text-center"><b>Shipping Cost</b></td>
                 <td class="text-right">$<%= @order.shipping_charges%></td>
+                <% subtotal= subtotal - subtotal*@coupon_used.percent_off/100 %>
               </tr>
               <tr>
                 <td></td>

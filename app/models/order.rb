@@ -5,7 +5,7 @@ class Order < ApplicationRecord
   belongs_to :payment_gateway
   has_many :order_details, dependent: :destroy
 
-
+  enum status:[:Ordered, :Shipped, :Delivered, :Cancelled]
   # after_save :add_to_order_details
   #
   # def add_to_order_details

@@ -89,7 +89,7 @@ class CartsController < ApplicationController
 
       @total = cost_user_cart()
       respond_to do |format|
-        format.js
+        format.js {  flash[:notice] = "my secret number " }
       end
      # for items in session cart
     else 
@@ -109,7 +109,9 @@ class CartsController < ApplicationController
     if current_user.present?
       @cart_item = Cart.find(params[:id])
       @cart_item.destroy
-      redirect_to carts_index_path notice: 'Cart item was successfully updated.'
+      respond_to do |format|
+        format.html{redirect_to carts_index_path, notice: 'Cart item was successfully updated.'}
+      end
      # for items in session cart
     else
       session[params[:id]] = nil
