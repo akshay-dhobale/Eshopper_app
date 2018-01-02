@@ -82,9 +82,6 @@
       </div>
     </section> <!--/#cart_items-->
     <div class="container">
-      <%= line_chart User.group_by_day(:created_at).count %>
-      <%= column_chart Order.group_by_month_of_year(:created_at, format: "%a").count %>
-      <%= pie_chart Order.group_by_day(:created_at).count %>
     </div>
   </div>
   <%= render '/home/footer'%>

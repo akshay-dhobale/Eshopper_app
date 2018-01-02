@@ -1,8 +1,6 @@
 
 <body>
   <%= render 'home/header' %>
-  <% if falsh[:notice].present? %>
-    <p><%%></p>
   <% if current_user.present? %>
     <%= render 'cart_items'%>
   <% else%>

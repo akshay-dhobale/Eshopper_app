@@ -1,0 +1,24 @@
+
+<%= render 'home/header' %>
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-3">
+        <div class="left-sidebar">
+          <h2>Category</h2>
+          <!--category-products-->
+          <%= render "home/category_products"%>
+          <!--brands_products-->
+          <%= render "home/brands" %>
+          <div class="shipping text-center"><!--shipping-->
+            <img src="/assets/home/shipping.jpg" alt="" />
+          </div><!--/shipping-->
+        </div>
+      </div>
+      <div class="col-sm-9 padding-right" id = "show_products">
+       <%= render "home/featured_items" %>
+      </div>
+    </div>
+  </div>
+</section>
+<%= render'home/footer' %>

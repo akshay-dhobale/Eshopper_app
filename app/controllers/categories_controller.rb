@@ -1,7 +1,14 @@
 class CategoriesController < ApplicationController
 
   def index
-    
+    @categories = Category.all
+    @brands = Brand.all
+    @category = Category.find(params[:id])
+    @products = @category.products
+    respond_to do |format|
+      format.html{render :index}
+      format.js 
+    end
   end
 
   def show

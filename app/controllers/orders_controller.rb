@@ -28,12 +28,12 @@ class OrdersController < ApplicationController
       if session[:coupon_id].present? && session[:coupon_id] != nil
         @order.coupon_id = session[:coupon_id].to_i
         session[:coupon_id] = nil
-        # @coupon = Coupon.find(@order.coupon_id)
-        # @total = @total-@total*(@coupon. percent_off/100)
+        @coupon = Coupon.find(@order.coupon_id)
+        @total = @total-@total*(@coupon. percent_off/100)
       end
-      # @total_tax = @total + @total*0.1
+      @total = @total + @total*0.1
       if @total > 200
-        @order.grand_total = @total
+        @order.grand_total = @total 
         @order.shipping_charges = 0
       else
         @order.grand_total = @total + 4
@@ -41,7 +41,6 @@ class OrdersController < ApplicationController
       end
       @order.status = "Ordered"
 
-      # @order = Order.create(orders_params)
       if @order.save
         if @order.coupon_id != nil
           @coupons_used = CouponsUsed.create(user_id: @order.user_id, order_id: @order.id, coupon_id: @order.coupon_id)

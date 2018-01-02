@@ -18,6 +18,7 @@
           </form>
           <%end%>
         </div><!--/login form-->
+        <%= render "devise/shared/links" %>
       </div>
       <div class="col-sm-1">
         <h2 class="or">OR</h2>
@@ -41,10 +42,9 @@
           </form>
           <%end%>
         </div><!--/sign up form-->
-        <%#= render "devise/shared/links" %>
       </div>
       <p class="btn btn-default ">
-        <%= link_to "Sign in with twitter", user_twitter_omniauth_authorize_path%>
+        <%= link_to "Sign in with twitter", user_twitter_omniauth_authorize_path %>
       </p>
     </div>
   </div>

@@ -3,10 +3,10 @@
     <% @categories.each do |category| %>
       <div class="panel-heading">
         <h4 class="panel-title">
+            <%= link_to categories_path(id:category.id), id:category.id, data: { remote: true } do %><%= category.name %><% end %>
           <a data-toggle="collapse" data-parent="#accordian" href="#<%= category.name %>">
             <%# if @parents.include? category.id %>
             <span class="badge pull-right"><i class="fa fa-plus"></i></span>
-            <%= category.name %>
           </a>
         </h4>
       </div>

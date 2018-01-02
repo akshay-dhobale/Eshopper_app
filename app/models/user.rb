@@ -10,6 +10,8 @@ class User < ApplicationRecord
   has_many :addresses
   has_many :carts
   has_many :orders
+
+  after_create :welcome_user
   
   def self.from_omniauth(auth)
 
@@ -35,6 +37,10 @@ class User < ApplicationRecord
 
   def password_required?
     super && provider.blank?
+  end
+
+  def welcome_user
+    UserMailer.user_created(self).deliver_now
   end
 end
 
