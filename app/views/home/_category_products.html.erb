@@ -3,7 +3,7 @@
     <% @categories.each do |category| %>
       <div class="panel-heading">
         <h4 class="panel-title">
-            <%= link_to categories_path(id:category.id), id:category.id, data: { remote: true } do %><%= category.name %><% end %>
+            <%= link_to categories_path(id:category.id)do %><%= category.name %><% end %>
           <a data-toggle="collapse" data-parent="#accordian" href="#<%= category.name %>">
             <%# if @parents.include? category.id %>
             <span class="badge pull-right"><i class="fa fa-plus"></i></span>
@@ -27,7 +27,3 @@
   </div>
 </div>
 
-
-<%#= link_to brandcategories_show_path(category_id: category.id, brand_id: sub.id), id:category.id, data: { remote: true } do %>
-                <%#= sub.name %> 
-              <%# end %>

@@ -1,11 +1,10 @@
 module ApplicationHelper
 
-  def flash_class(level)
-    case level
-        when :notice then "alert alert-info"
-        when :success then "alert alert-success"
-        when :error then "alert alert-error"
-        when :alert then "alert alert-error"
+  def cart_count
+    if current_user.present?
+      @count = Cart.where(user_id: current_user.id).count()
+      return @count
     end
   end
+
 end

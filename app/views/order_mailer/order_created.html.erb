@@ -51,7 +51,7 @@
               <% subtotal = 0%>
               <% @order_details.each do |item|%>
                 <tr>
-                  <td><%= item.product.product_images.first.prod_img.url%></td>
+                  <td><%#= item.product.product_images.first.prod_img.url%></td>
                   <td><%= item.product.name%></td>
                   <td class="text-center">$<%= item.product.price%></td>
                   <td class="text-center"><%= item.quantity%></td>

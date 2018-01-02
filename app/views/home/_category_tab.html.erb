@@ -26,7 +26,10 @@
                 <% end %>
                 <h2>$<%= prod.price%></h2>
                 <p><%= prod.name%></p>
-                <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                <p data-no-turbolink><%= link_to carts_create_path(product_id: prod.id), method:"post", id:prod.id, data: { remote: true },:class=>"btn btn-default add-to-cart" do %>
+                  <i class="fa fa-shopping-cart"></i>Add to cart
+                  <% end %>
+                </p>
               </div>
             </div>
           </div>

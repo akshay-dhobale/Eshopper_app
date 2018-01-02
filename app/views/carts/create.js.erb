@@ -1,3 +1,6 @@
 $("#cart_count").empty();  
 $("<%= j render '/home/cart_logo' %>").appendTo("#cart_count"); 
 
+$("#flash_cart_featured").hide(200)
+$("#flash_cart_featured").show(200)
+$("#flash_cart_featured").html('<div class="alert alert-success text-center"><%= notice %></div>');

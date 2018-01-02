@@ -17,4 +17,15 @@ class OrderMailer < ApplicationMailer
     @url  = 'http://example.com/login'
     mail(to: @user.email, subject: 'Products Ordered from Eshopper')
   end
+
+  def order_cancelled(order, order_details)
+    @order= order
+    @user = @order.user
+    if @order.coupon_id != nil
+      @coupon_used = Coupon.find(@order.coupon_id)
+    end
+    @order_details = order_details
+    @url  = 'http://example.com/login'
+    mail(to: @user.email, subject: 'Order Cancelled')
+  end
 end

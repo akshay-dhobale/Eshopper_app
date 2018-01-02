@@ -9,10 +9,10 @@ class ProductsController < ApplicationController
     @cart = Cart.new
     # @prods = Product.all
     @brand_prod = Product.where(brand_id: @br)
-    # if current_user.present?
-    #   @cart_user = Cart.where(user_id: current_user.id)
-    #   @count = @cart_user.count()
-    # end
+    if current_user.present?
+      @cart_user = Cart.where(user_id: current_user.id)
+      @count = @cart_user.count()
+    end
   end
 
   private

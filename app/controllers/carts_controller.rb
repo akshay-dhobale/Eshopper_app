@@ -1,6 +1,4 @@
 class CartsController < ApplicationController
-  # before_action :authenticate_user!
-  # before_action :set_cart,
   include CartsHelper
 
   def new
@@ -23,17 +21,9 @@ class CartsController < ApplicationController
           session.delete(product_id.to_s)
         end
       end
-
       @total = cost_user_cart
     # for items in session cart
     else
-      # keys = session.keys
-      # @keys = keys.map(&:to_i)
-      # @products = Product.where(id: @keys)
-      # @total = 0
-      # @products.each do |product|
-      #   @total = @total + (product.price * session[product.id.to_i])
-      # end
       @total = cost_session_cart
       @shipping_cost = 4
     end
@@ -51,8 +41,9 @@ class CartsController < ApplicationController
       end
       @cart.save!
       @count = current_user.carts.count()
+
       respond_to do |format|
-        format.js
+        format.js{flash[:notice] = "Product Added To Cart"}
       end
      # for items in session cart
     else
@@ -65,7 +56,7 @@ class CartsController < ApplicationController
         session[product_id] ||= {}
         session[product_id] = quantity
       end
-      # binding.pry`
+      flash[:notice] = "Product added to cart"
     end
   end
 
@@ -89,7 +80,7 @@ class CartsController < ApplicationController
 
       @total = cost_user_cart()
       respond_to do |format|
-        format.js {  flash[:notice] = "my secret number " }
+        format.js 
       end
      # for items in session cart
     else 
@@ -110,12 +101,12 @@ class CartsController < ApplicationController
       @cart_item = Cart.find(params[:id])
       @cart_item.destroy
       respond_to do |format|
-        format.html{redirect_to carts_index_path, notice: 'Cart item was successfully updated.'}
+        format.html{redirect_to carts_index_path, notice: 'Cart product is successfully removed.'}
       end
      # for items in session cart
     else
       session[params[:id]] = nil
-      redirect_to carts_index_path
+      redirect_to carts_index_path, notice: 'Cart product is successfully removed.'
     end
   end
 

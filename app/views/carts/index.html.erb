@@ -1,16 +1,9 @@
 
-<body>
-  <%= render 'home/header' %>
-  <% if current_user.present? %>
-    <%= render 'cart_items'%>
-  <% else%>
-    <%= render 'temp_cart'%>
-  <% end %>
-  <%= render 'do_action'%>
-  <div> 
-    
-  </div>
-  <footer id="footer"><!--Footer-->
-    <%= render'home/footer' %>
-  </footer>
-</body>
+<%= render 'home/header' %>
+<% if current_user.present? %>
+  <%= render 'cart_items'%>
+<% else%>
+  <%= render 'temp_cart'%>
+<% end %>
+<%= render 'do_action'%>
+

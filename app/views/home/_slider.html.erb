@@ -5,7 +5,7 @@
         <div id="slider-carousel" class="carousel slide" data-ride="carousel">
           <ol class="carousel-indicators">
             <% @banner.each_with_index do |b,i|%>
-              <li data-target="#slider-carousel" data-slide-to="<%= i %>" <% if i==0 %>active<% end %>">
+              <li data-target="#slider-carousel" data-slide-to="<%= i %>" <% if i==0 %>active<% end %>>
               </li>
             <% end %>
           </ol>
@@ -37,3 +37,4 @@
     </div>
   </div>
 </section>
+

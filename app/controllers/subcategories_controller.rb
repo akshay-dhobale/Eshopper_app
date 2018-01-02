@@ -3,11 +3,9 @@ class SubcategoriesController < ApplicationController
   end
 
   def show
-    # binding.pry
     @subcategory = Subcategory.find(params[:id])
     @products = @subcategory.products
     respond_to do |format|
-      # format.html {redirect_to subcategories_show_path(id: params[:id]) }
       format.js 
     end
   end

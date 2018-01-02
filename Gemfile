@@ -23,6 +23,8 @@ gem 'devise-bootstrap-views'
 
 gem 'omniauth-twitter'
 
+gem 'omniauth-google-oauth2'
+
 # for report charts
 gem 'groupdate'
 gem "chartkick"

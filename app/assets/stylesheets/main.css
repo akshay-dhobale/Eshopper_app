@@ -2534,3 +2534,11 @@ h2.title {
   font-family:Trebuchet MS,Helvetica,sans-serif;
   font-size:28px;
 }
+
+.notice{
+  border: black, solid, 2px;
+}
+
+.btn-margin{
+  margin-top: 10px;
+}

@@ -1,36 +1,15 @@
 <body>
-  <%= render "/home/header"%>
   <div class="container">
     <div class="invoice-title">
-        <h3 class="center">Payment Due $<%= @order.grand_total%></h3>
+      <h3><%= @user.email%> Cancelled the order with id : <%= @order.id %></h3>
+      <h3 class="center">Payment Due $<%= @order.grand_total%></h3>
       <h3 class="pull-right">Order #<%= @order.id%></h3>
     </div>
     <hr>
-    <div>
-      <p>Order Status:  <%= @order.status%></p>
-      <div class="progress">
-        <% if @order.status == "Ordered" %>
-        <div class="progress progress-bar progress-bar-success progress-bar-striped active" style="width:33.3%;">
-        </div>
-
-        <% elsif @order.status == "Shipped" %>
-        <div class="progress-bar progress-bar-info progress-bar-striped active" style="width:66.6%;">
-        </div>
-
-        <% elsif @order.status == "Delivered" %>
-        <div class="progress progress-bar progress-bar-success progress-bar-striped active" style="width:100%;">
-        </div>
-
-        <% elsif @order.status == "Cancelled" %>
-        <div class="progress-bar progress-bar-danger progress-bar-striped active" style="width:100%;">
-        </div>
-        <% end %>
-      </div>
-    </div>
     <div class="row">
       <div class="col-xs-6">
         <address>
-        <strong>Billed To: <%= @order.user.firstname%> <%= @order.user.lastname%></strong> <br>
+          <strong>Billed To: <%= @order.user.firstname%> <%= @order.user.lastname%></strong> <br>
           <p><%= @order.address.address_1%>,<br><%= @order.address.address_2%>,<br>
           <%= @order.address.city%>,<br><%= @order.address.state%>,<br><%= @order.address.country%>
         </address>
@@ -62,6 +41,7 @@
           <table class="table table-condensed">
             <thead>
               <tr>
+                <td><strong></strong></td>
                 <td><strong>Item</strong></td>
                 <td class="text-center"><strong>Price</strong></td>
                 <td class="text-center"><strong>Quantity</strong></td>
@@ -70,8 +50,9 @@
             </thead>
             <tbody>
               <% subtotal = 0%>
-              <% @order.order_details.each do |item|%>
+              <% @order_details.each do |item|%>
                 <tr>
+                  <td><%#= item.product.product_images.first.prod_img.url%></td>
                   <td><%= item.product.name%></td>
                   <td class="text-center">$<%= item.product.price%></td>
                   <td class="text-center"><%= item.quantity%></td>
@@ -82,6 +63,7 @@
               <tr>
                 <td></td>
                 <td></td>
+                <td></td>
                 <td class="text-center"><b>Subtotal</b></td>
                 <td class="text-right">$<%= subtotal%></td>
               </tr>
@@ -89,24 +71,28 @@
                 <tr>
                   <td></td>
                   <td></td>
+                  <td></td>
                   <td class="text-center"><b>Discount</b></td>
                   <td class="text-right"><%= @coupon_used.percent_off %>%</td>
-                  <% subtotal= subtotal - subtotal*@coupon_used.percent_off/100 %>
                 </tr>
-              <% end %>
               <tr>
+                <td></td>
                 <td></td>
                 <td></td>
                 <td class="text-center"><b>Shipping Cost</b></td>
                 <td class="text-right">$<%= @order.shipping_charges%></td>
+                <% subtotal= subtotal - subtotal*@coupon_used.percent_off/100 %>
               </tr>
+              <% end %>
               <tr>
                 <td></td>
                 <td></td>
-                <td class="text-center"><b><p>GST</p>(CGST[5.0%]+SGST[5.0%]):</b></td>
-                <td class="text-right"><br><p></p>$<%= subtotal*0.1 %></td>
+                <td></td>
+                <td class="text-center"><b>GST</b></td>
+                <td class="text-right">$<%= subtotal*0.1 %></td>
               </tr>
               <tr>
+                <td></td>
                 <td></td>
                 <td></td>
                 <td class="text-center"><b>Grand Total</b></td>
@@ -116,11 +102,6 @@
           </table>
         </div>
       </div>
-    </div>
-    <div>
-      <p>
-        <%= link_to order_path(@order.id), method:'patch',:class=>"pull-right btn btn-default" do %> Cancel Order <% end %>
-      </p>
     </div>
   </div>
 </body>

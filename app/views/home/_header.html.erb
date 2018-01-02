@@ -12,7 +12,7 @@
           <div class="shop-menu pull-right">
             <ul class="nav navbar-nav">
               <li><% if user_signed_in? %>
-                <% if current_user.permission == true %>
+                <% if current_user.permission? %>
                   <p class="pull-right btn btn-default"> <%= link_to 'Admin', '/admin' %> </p>
                   <% end %>
                 <% end %>
@@ -44,7 +44,7 @@
               <li id = "cart_count" title="All items added in cart">
                 <%= link_to carts_index_path do %>
                   <i class="fa fa-shopping-cart"></i>
-                  Cart(<% if current_user.present? %><%= @count %> <% else %> <%= session_count %> <% end %>)
+                  Cart(<% if current_user.present? %><%= cart_count %> <% else %> <%= session_count %> <% end %>)
                 <% end %>
               </li>
               <li>
@@ -63,4 +63,9 @@
       </div>
     </div>
   </div><!--/header-middle-->
+  <!-- <div id="flash">
+    <%# flash.each do |key, value| %>
+      <div class="alert alert-success text-center"><%#= value %></div>
+    <%# end %>
+  </div> -->
 </header>

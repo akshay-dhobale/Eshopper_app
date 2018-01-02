@@ -1,7 +1,6 @@
 class CmsController < ApplicationController
 
   def index
-    # binding.pry
     if params[:value] == "faq"
       @cms = Cm.find_by(title: "faq")
       render :faq

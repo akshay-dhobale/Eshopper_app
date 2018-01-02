@@ -30,7 +30,7 @@ Rails.application.routes.draw do
 
   post 'carts/create'
 
-  get 'carts/destroy'
+  delete 'carts/destroy'
 
   get 'carts/update'
 
@@ -90,9 +90,7 @@ Rails.application.routes.draw do
   # get 'orders/show'
     get 'details', on: :member
   end
-  post 'orders/step1', to:'orders#step1'
-  post 'orders/step2', to:'orders#step2'
-  post 'orders/step3', to:'orders#step3'
+  
   # resources :carts
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

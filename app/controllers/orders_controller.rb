@@ -15,9 +15,8 @@ class OrdersController < ApplicationController
   end
 
   def create
-    # binding.pry
-    if !params[:payment_option].present?
-      redirect_to orders_step3_path 
+    if !params[:payment_option].present? || params[:payment_option] != "1"
+      redirect_to checkouts_payment_option_path 
     else
       @order = Order.new
       @order.user_id = current_user.id
@@ -60,6 +59,15 @@ class OrdersController < ApplicationController
   def show
     @order = Order.find(params[:id])
     @order_detail_products = OrderDetail.where(order_id: @order.id)
+  end
+
+  def update
+    @order = Order.find(params[:id])
+    @order.status = "Cancelled"
+    if @order.save
+      OrderMailer.order_cancelled(@order, @order.order_details).deliver_now
+    end
+    render :details
   end
   
   def details

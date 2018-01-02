@@ -2,7 +2,6 @@ class BrandsController < ApplicationController
   def show
     @brands = Brand.all
     @products = Product.all
-    # binding.pry
     @brand = Brand.find(params[:id])
     @products = @brand.products
     respond_to do |format|

@@ -12,7 +12,9 @@ class User < ApplicationRecord
   has_many :orders
 
   after_create :welcome_user
-  
+
+  # after_create :products_in_cart
+
   def self.from_omniauth(auth)
 
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
@@ -41,6 +43,23 @@ class User < ApplicationRecord
 
   def welcome_user
     UserMailer.user_created(self).deliver_now
+  end
+  
+  def products_in_cart
+    # b =  session.keys 
+    # @p = b.map(&:to_i)
+    # @p.each do |product_id|
+    #   if product_id != 0
+    #     @cart = Cart.find_by(product_id: product_id, user_id: current_user.id)
+    #     if @cart.present?
+    #       @cart.quantity += 1
+    #     else
+    #       @cart = Cart.create(product_id: product_id, user_id: current_user.id, quantity: session[product_id.to_s])
+    #     end
+    #     @cart.save!
+    #     session.delete(product_id.to_s)
+    #   end
+    # end
   end
 end
 

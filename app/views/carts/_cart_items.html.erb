@@ -30,22 +30,21 @@
                   
                 </td>
                 <td class="cart_price">
-                  <p>$<%= item.product.price %></p>
+                  $<%= item.product.price %>
                 </td>
                 <td class="cart_quantity col-sm-2">
                   <div class="cart_quantity_button">
-                    <p class="cart_quantity_up" href=""><%= link_to carts_update_path(id:item.id, value: 1), data: { remote: true } do %> + <% end %></p>
+                    <%= link_to carts_update_path(id:item.id, value: 1), data: { remote: true },:class=>"cart_quantity_up" do %> + <% end %>
                     <span id="quant_<%= item.id%>"><input class="cart_quantity_input " id = "quntity_change" name="quantity" value = <%= item.quantity%> min = "1" autocomplete="off" size="1"></span>
-                    <p class="cart_quantity_down" ><%= link_to carts_update_path(id:item.id, value:-1), data: { remote: true } do %> - <% end %>
-                    </p>
+                    <%= link_to carts_update_path(id:item.id, value:-1), data: { remote: true },:class=>"cart_quantity_up" do %> - <% end %>
                   </div>
                 </td>
                 <td class="cart_total">
-                  <p class="cart_total_price" id = "price_<%= item.id%>" >
-                  $<%= (item.product.price*item.quantity)  %></p>
+                  <span class="cart_total_price" id = "price_<%= item.id%>" >
+                  $<%= (item.product.price*item.quantity)  %></span>
                 </td>
                 <td class="cart_delete">
-                  <p class="cart_quantity_delete"><%= link_to carts_destroy_path(id:item.id), id:"remove" do %> Remove <% end %></p>
+                  <p class="cart_quantity_delete"><%= link_to carts_destroy_path(id:item.id),method:'delete',data: { confirm:"are you sure?"} do %> Remove <% end %></p>
                 </td>
               </tr>
             <%# end %>

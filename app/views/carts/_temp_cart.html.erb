@@ -22,13 +22,13 @@
           <% @products.each do |item|%>
             <tr id = <%= item.id%> >
               <td class="cart_product">
-                <a href=""><%= image_tag item.product_images.first.prod_img.url %></a>
+                <a href=""><%= image_tag item.product_images.first.prod_img.url,size: "100x100" %></a>
               </td>
               <td class="cart_description">
                 <h4><a href=""><%= item.name %></a></h4>
               </td>
               <td class="cart_price">
-                <p>$<%= item.price %></p>
+                $<%= item.price %>
               </td>
               <td class="cart_quantity">
                 <div class="cart_quantity_button">
@@ -39,11 +39,11 @@
                 </div>
               </td>
               <td class="cart_total">
-                <p class="cart_total_price" id = "price_<%= item.id%>" >
-                $<%= (item.price*session[ item.id.to_s])  %></p>
+                <span class="cart_total_price" id = "price_<%= item.id%>" >
+                $<%= (item.price*session[ item.id.to_s])  %></span>
               </td>
               <td class="cart_delete">
-                <p class="cart_quantity_delete"><%= link_to carts_destroy_path(id:item.id), id:"remove" do %> Remove <% end %></p>
+                <p class="cart_quantity_delete"><%= link_to carts_destroy_path(id:item.id),method:'delete',data: { confirm:"are you sure?"} do %> Remove <% end %></p>
               </td>
             </tr>
           <% end %>

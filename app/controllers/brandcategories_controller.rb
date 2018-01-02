@@ -9,7 +9,6 @@ class BrandcategoriesController < ApplicationController
   	respond_to do |format|
       format.js
     end
-  	# binding.pry
    end
 
   private

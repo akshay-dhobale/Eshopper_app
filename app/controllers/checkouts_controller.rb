@@ -4,6 +4,7 @@ class CheckoutsController < ApplicationController
 
   def address_select
   	@totaladdress = Address.where(user_id: current_user.id)
+    
   end
 
   def payment_review
@@ -11,7 +12,6 @@ class CheckoutsController < ApplicationController
     session[:address_id] = params[:address_id]
     @cart_user = Cart.where(user_id: current_user.id)
     @total = cost_user_cart()
-    # binding.pry
   end
 
   def payment_option

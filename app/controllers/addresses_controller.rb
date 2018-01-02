@@ -3,14 +3,12 @@ class AddressesController < ApplicationController
   def new
     @flag = params[:flag]
     @address = Address.new
-    binding.pry
   end
 
   def create
     @address = Address.create(address_params)
     @address.user_id = current_user.id
     # @flag = params[:flag]
-    binding.pry
     @address.save!
     # render :back
     if params[:flag] == "checkout"

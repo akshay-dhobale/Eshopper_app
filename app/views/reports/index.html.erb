@@ -1,11 +1,8 @@
-<body>
-  <%= render '/home/header' %>
-  <div class="container" >
-    <br><br><br>
-    <%= link_to "Sales Report", reports_sales_report_path, class: "btn btn-primary" %><br>
-    <%= link_to "Customer Registered", reports_customer_registered_path, class: "btn btn-primary" %><br>
-    <%= link_to "Coupons used", reports_coupons_used_path, class: "btn btn-primary"%>
-    <br><br><br>
-  </div>
-  <%= render '/home/footer'%>
-</body>
+<%= render '/home/header' %>
+<div class="container" >
+  <br><br><br>
+  <%= link_to "Sales Report", reports_sales_report_path, class: "btn btn-primary" %><br>
+  <%= link_to "Customer Registered", reports_customer_registered_path, class: "btn btn-primary" %><br>
+  <%= link_to "Coupons used", reports_coupons_used_path, class: "btn btn-primary"%>
+  <br><br><br>
+</div>
