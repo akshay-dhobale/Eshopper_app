@@ -10,6 +10,7 @@ class UserMailer < ApplicationMailer
     # @greeting = "Hi"
     @user = user
     @url  = 'http://localhost:3000/users/sign_in'
+    attachments.inline['logo.png'] = File.read('app/assets/images/home/logo.png')
     mail(to: @user.email, subject: 'Succesfully created account on Eshopper')
 
     # mail to: "to@example.org"

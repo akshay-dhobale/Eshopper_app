@@ -7,7 +7,6 @@ class ProductsController < ApplicationController
     @br = @product.brand_id
 
     @cart = Cart.new
-    # @prods = Product.all
     @brand_prod = Product.where(brand_id: @br)
     if current_user.present?
       @cart_user = Cart.where(user_id: current_user.id)

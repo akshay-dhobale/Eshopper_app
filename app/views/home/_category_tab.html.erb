@@ -3,7 +3,7 @@
   <div class="col-sm-12">
     <ul class="nav nav-tabs" >
       <% @categories.each_with_index do |category, index| %>
-        <li class="<% if index == 0%>active<% end %>" >
+        <li>
         <%# binding.pry %>
           <%= link_to category_path(id:category.id), id:category.id, data: { remote: true} do %>
             <%= category.name %>
@@ -40,3 +40,4 @@
 </div>
 
 
+<!-- class="<%# if index == 0%>active<%# end %>" -->

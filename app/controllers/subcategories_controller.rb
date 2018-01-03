@@ -3,10 +3,13 @@ class SubcategoriesController < ApplicationController
   end
 
   def show
+    @categories = Category.all
+    @brands = Brand.all
     @subcategory = Subcategory.find(params[:id])
     @products = @subcategory.products
     respond_to do |format|
       format.js 
+      format.html
     end
   end
 

@@ -1,4 +1,5 @@
 <body>
+  <p><%= image_tag attachments['logo.png'].url %></p>
   <div class="container">
     <div class="invoice-title">
         <h3 class="center">Payment Due $<%= @order.grand_total%></h3>
@@ -51,7 +52,8 @@
               <% subtotal = 0%>
               <% @order_details.each do |item|%>
                 <tr>
-                  <td><%#= item.product.product_images.first.prod_img.url%></td>
+                  <td><%=  image_tag  attachments[item.product.product_images.first.prod_img_file_name].url, :height=> "200px" %>
+                  </td>
                   <td><%= item.product.name%></td>
                   <td class="text-center">$<%= item.product.price%></td>
                   <td class="text-center"><%= item.quantity%></td>

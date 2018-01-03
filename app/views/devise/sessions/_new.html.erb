@@ -2,6 +2,11 @@
   <div class="container">
     <div class="row">
       <div class="col-sm-4 col-sm-offset-4">
+        <div id="flash">
+          <% flash.each do |key, value| %>
+            <div class="alert alert-danger text-center"><%= value %></div>
+          <% end %>
+        </div>
         <div class="login-form"><!--login form-->
           <h2>Login to your account</h2>
           <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>

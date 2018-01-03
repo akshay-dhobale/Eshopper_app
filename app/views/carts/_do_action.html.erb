@@ -1,28 +1,29 @@
-  <section id="do_action">
-    <div class="container">
-      <div class="heading">
-        <h3>What would you like to do next?</h3>
-        <p>Choose if you have a discount code or reward points you want to use or would like to estimate your delivery cost.</p>
+<section id="do_action">
+  <div class="container">
+    <div class="heading">
+      <h3>What would you like to do next?</h3>
+      <p>Choose if you have a discount code or reward points you want to use or would like to estimate your delivery cost.</p>
+    </div>
+    <div class="row">
+      <div class="col-sm-6" >
+        <div class="chose_area">
+          <%= form_for :add_coupon, :url => { :method => :get, :action => :add_coupon },remote: true do|f|%>
+            <input type="text" name="code" <% if @coupon.present? %> value=<%= @coupon.code%> <%end%>>
+            <!-- <input type="submit"> -->
+            <span id="coupon_button">
+              <% if session[:coupon_id].present? && session[:coupon_id] != nil %>
+                <%= f.submit "remove", data:{remote: true} %>
+              <% else %>
+                <%= f.submit "Apply", data:{remote: true} %>
+              <% end %>
+            </span>
+          <% end %>
+        </div>
+        <span id="coupon_applied"></span>
       </div>
-      <div class="row">
-        <div class="col-sm-6" >
-          <div class="chose_area">
-            <%= form_for :add_coupon, :url => { :method => :get, :action => :add_coupon },remote: true do|f|%>
-              <input type="text" name="code" <% if @coupon.present? %> value=<%= @coupon.code%> <%end%>>
-              <!-- <input type="submit"> -->
-              <span id="coupon_button">
-                <% if session[:coupon_id].present? && session[:coupon_id] != nil %>
-                  <%= f.submit "remove", data:{remote: true} %>
-                <% else %>
-                  <%= f.submit "Apply", data:{remote: true} %>
-                <% end %>
-              </span>
-            <% end %>
-          </div>
-        </div>
-        <div class="col-sm-6" id="only_amount">
-          <%= render 'total_amount'%>
-        </div>
+      <div class="col-sm-6" id="only_amount">
+        <%= render 'total_amount'%>
       </div>
     </div>
-  </section><!--/#do_action-->
+  </div>
+</section><!--/#do_action-->

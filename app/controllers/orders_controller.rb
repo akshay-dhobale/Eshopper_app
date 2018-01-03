@@ -6,7 +6,7 @@ class OrdersController < ApplicationController
   def index
     # @orders = Order.where(user_id: current_user.id)
     # @orders = @orders.sort_by &:created_at
-    @orders = current_user.orders
+    @orders = current_user.orders.order(:created_at).reverse_order
     @user_order_details = OrderDetail.where(order_id: @orders.ids)
   end
 
@@ -24,6 +24,7 @@ class OrdersController < ApplicationController
       @order.address_id = session[:address_id].to_i
       session[:address_id] = nil
       @total = cost_user_cart()
+
       if session[:coupon_id].present? && session[:coupon_id] != nil
         @order.coupon_id = session[:coupon_id].to_i
         session[:coupon_id] = nil
@@ -31,6 +32,7 @@ class OrdersController < ApplicationController
         @total = @total-@total*(@coupon. percent_off/100)
       end
       @total = @total + @total*0.1
+
       if @total > 200
         @order.grand_total = @total 
         @order.shipping_charges = 0
@@ -45,6 +47,7 @@ class OrdersController < ApplicationController
           @coupons_used = CouponsUsed.create(user_id: @order.user_id, order_id: @order.id, coupon_id: @order.coupon_id)
         end
         @user_cart = Cart.where(user_id: current_user.id)
+        
         @user_cart.each do |cart_item|
           @order_details = OrderDetail.create(order_id:@order.id, product_id:cart_item.product_id, quantity:cart_item.quantity, amount:cart_item.product.price*cart_item.quantity)
           @order_details.save

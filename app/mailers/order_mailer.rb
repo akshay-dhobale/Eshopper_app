@@ -15,6 +15,12 @@ class OrderMailer < ApplicationMailer
     end
     @order_details = order_details
     @url  = 'http://example.com/login'
+    attachments.inline['logo.png'] = File.read('app/assets/images/home/logo.png')
+    
+    @order_details.each do |order_image|
+      attachments[order_image.product.product_images.first.prod_img_file_name] = File.read(order_image.product.product_images.first.prod_img.path)
+      binding.pry
+    end
     mail(to: @user.email, subject: 'Products Ordered from Eshopper')
   end
 
@@ -26,6 +32,7 @@ class OrderMailer < ApplicationMailer
     end
     @order_details = order_details
     @url  = 'http://example.com/login'
+    attachments.inline['logo.png'] = File.read('app/assets/images/home/logo.png')
     mail(to: @user.email, subject: 'Order Cancelled')
   end
 end

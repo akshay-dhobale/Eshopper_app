@@ -28,6 +28,9 @@ gem 'omniauth-twitter'
 gem 'groupdate'
 gem "chartkick"
 
+# for email to test
+gem "letter_opener", :group => :development
+
 
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets

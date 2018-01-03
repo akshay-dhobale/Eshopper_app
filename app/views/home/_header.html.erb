@@ -11,16 +11,23 @@
         <div class="col-sm-8">
           <div class="shop-menu pull-right">
             <ul class="nav navbar-nav">
-              <li><% if user_signed_in? %>
-                <% if current_user.permission? %>
-                  <%= link_to 'Admin', '/admin' %> 
-                <% end %>
+              <li>
+                <% if user_signed_in? %>
+                  <% if current_user.permission? %>
+                    <%= link_to 'Admin', '/admin' %> 
+                  <% end %>
                 <% end %>
               </li>
-              <li><% if user_signed_in? %>
-                <% if current_user.permission == true %>
-                  <%= link_to reports_index_path do%> Reports <%end%>
-                  <% end %>
+              <li>
+                <% if user_signed_in? %>
+                  <% if current_user.permission == true %>
+                    <%= link_to reports_index_path do%> Reports <%end%>
+                    <% end %>
+                <% end %>
+              </li>
+              <li>
+                <% if user_signed_in? %>
+                  <a><%= current_user.email %></a>
                 <% end %>
               </li>
               <li>
@@ -63,9 +70,4 @@
       </div>
     </div>
   </div><!--/header-middle-->
-  <!-- <div id="flash">
-    <%# flash.each do |key, value| %>
-      <div class="alert alert-success text-center"><%#= value %></div>
-    <%# end %>
-  </div> -->
 </header>

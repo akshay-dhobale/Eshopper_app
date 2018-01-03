@@ -128,7 +128,7 @@ class CartsController < ApplicationController
     end
     @shipping_cost = 4
     respond_to do |format|
-      format.js 
+      format.js
     end
   end
 

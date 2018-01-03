@@ -21,26 +21,24 @@
             <% if item.user_id == @user %>
               <tr>
                 <td class="cart_product">
-                  <a href=""><%= image_tag item.product.product_images.first.prod_img.url, :class => "img-circle" %></a>
+                  <a href=""><%= image_tag item.product.product_images.first.prod_img.url, :class => "img-circle" , :height => "200px" %></a>
                 </td>
                 <td class="cart_description">
                   <h4><a href=""><%= item.product.name %></a></h4>
                   
                 </td>
                 <td class="cart_price">
-                  <p>$<%= item.product.price %></p>
+                  $<%= item.product.price %>
                 </td>
                 <td>
-                <p title="Click to add to your cart" class="btn btn-default add-to-cart" data-no-turbolink><i class="fa fa-shopping-cart"></i>
-                  <%= link_to carts_create_path(product_id: item.product.id), id:item.product.id, data: { remote: true } do %>
-                    Add to cart
+                <!-- <span title="Click to add to your cart"  data-no-turbolink> -->
+                  <%= link_to carts_create_path(product_id: item.product.id), method:"post", id:item.product.id, data: { remote: true }, :class=>"btn btn-default add-to-cart" do %>
+                    <i class="fa fa-shopping-cart"></i>Add to cart
                   <% end %>
-                  </p>
+                  <!-- </span> -->
                 </td>
                 <td class="cart_delete">
-                  <p class="cart_quantity_delete">
-                    <%= link_to'Remove', wishlist_path(id:item.id), method:"delete" %>
-                  </p>
+                  <%= link_to wishlist_path(id:item.id), method:"delete", :class=>"cart_quantity_delete" do %> <i class="fa fa-times"></i> <% end %>
                 </td>
               </tr>
             <% end %>
