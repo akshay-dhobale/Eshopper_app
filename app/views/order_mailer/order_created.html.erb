@@ -41,7 +41,7 @@
           <table class="table table-condensed">
             <thead>
               <tr>
-                <td><strong></strong></td>
+                <td><strong>Image</strong></td>
                 <td><strong>Item</strong></td>
                 <td class="text-center"><strong>Price</strong></td>
                 <td class="text-center"><strong>Quantity</strong></td>
@@ -52,7 +52,7 @@
               <% subtotal = 0%>
               <% @order_details.each do |item|%>
                 <tr>
-                  <td><%=  image_tag  attachments[item.product.product_images.first.prod_img_file_name].url, :height=> "200px" %>
+                  <td><%=  image_tag  attachments[item.product.product_images.first.prod_img_file_name].url, :height=> "150px" %>
                   </td>
                   <td><%= item.product.name%></td>
                   <td class="text-center">$<%= item.product.price%></td>
