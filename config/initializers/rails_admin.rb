@@ -51,4 +51,10 @@ RailsAdmin.config do |config|
     end
   end
 
+  config.model NewsletterContent do
+    edit do
+      field :letter_content, :ck_editor
+    end
+  end
+
 end

@@ -1,5 +1,5 @@
 <%= render "/home/header"%>
 <div class="container">
   <p class="report_title">Customer Registered</p><br><br><br>
-  <%= column_chart User.group_by_month(:created_at).count %>
+  <%= column_chart @data %>
 </div>

@@ -34,7 +34,7 @@
                 <div class="cart_quantity_button">
                   <p class="cart_quantity_up" href=""><%= link_to carts_update_path(id:item.id, value: 1),data:{remote: true} do %> + <% end %></p>
                   <span id="quant_<%= item.id%>"><input class="cart_quantity_input " id = "quntity_change" name="quantity" value = <%= session[ item.id.to_s] %> min = "1" autocomplete="off" size="1"></span>
-                  <p class="cart_quantity_down" ><%= link_to carts_update_path(id:item.id, value:-1),data:{remote: true} do %> - <% end %>
+                  <p class="cart_quantity_down" ><%= link_to carts_update_path(id:item.id, value:-1), data:{remote: true} do %> - <% end %>
                   </p>
                 </div>
               </td>

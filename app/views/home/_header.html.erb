@@ -13,8 +13,8 @@
             <ul class="nav navbar-nav">
               <li><% if user_signed_in? %>
                 <% if current_user.permission? %>
-                  <p class="pull-right btn btn-default"> <%= link_to 'Admin', '/admin' %> </p>
-                  <% end %>
+                  <%= link_to 'Admin', '/admin' %> 
+                <% end %>
                 <% end %>
               </li>
               <li><% if user_signed_in? %>

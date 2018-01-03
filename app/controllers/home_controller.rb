@@ -20,6 +20,7 @@ class HomeController < ApplicationController
     if @newsletter_email.present?
     else
       @newsletter_sub = Newsletter.create(email: params[:email])
+      NewsletterMailer.subscribed_user(@newsletter_sub.email).deliver_now
     end
     redirect_to root_path
   end

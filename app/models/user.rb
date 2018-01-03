@@ -63,4 +63,3 @@ class User < ApplicationRecord
   end
 end
 
-# ["extra"]["raw_info"]
