@@ -9,10 +9,12 @@
     <script src="/assets/main.js"></script>
 
     <title>EshopperApp</title>
-    <%= stylesheet_link_tag 'application' %>
-    <%= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
-    <%= javascript_include_tag Ckeditor.cdn_url %>
+    <%#= stylesheet_link_tag 'application' %>
+    <%#= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
+    <%#= javascript_include_tag Ckeditor.cdn_url %>
     <%= javascript_include_tag 'application' %> 
+    <%= stylesheet_link_tag 'application', media: 'all'%>
+    <%= javascript_include_tag 'application'%>
     <%= csrf_meta_tags %>
     <!-- <link rel="stylesheet" href="/https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
@@ -43,7 +45,7 @@
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/assets/ico/apple-touch-icon-114-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/assets/ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="/assets/ico/apple-touch-icon-57-precomposed.png">
-
+    
     <%#= javascript_include_tag 'jquery', 'application' %>
 
   </head>
