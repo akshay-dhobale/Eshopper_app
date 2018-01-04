@@ -32,7 +32,7 @@ class OrdersController < ApplicationController
         @total = @total-@total*(@coupon. percent_off/100)
       end
       @total = @total + @total*0.1
-
+      binding.pry
       if @total > 200
         @order.grand_total = @total 
         @order.shipping_charges = 0

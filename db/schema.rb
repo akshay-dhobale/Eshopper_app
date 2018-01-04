@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180102153549) do
+ActiveRecord::Schema.define(version: 20180104153656) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -147,6 +147,8 @@ ActiveRecord::Schema.define(version: 20180102153549) do
     t.bigint "coupon_id"
     t.bigint "payment_gateway_id"
     t.integer "status"
+    t.float "grand_total"
+    t.float "shipping_charges"
     t.index ["address_id"], name: "index_orders_on_address_id"
     t.index ["coupon_id"], name: "index_orders_on_coupon_id"
     t.index ["payment_gateway_id"], name: "index_orders_on_payment_gateway_id"
