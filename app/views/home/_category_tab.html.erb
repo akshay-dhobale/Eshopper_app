@@ -15,8 +15,8 @@
   </div>
   <%#= render 'category_tab_list'%>
   <div id = "content" class="tab-content">
-    <div class="tab-pane fade active in" id = "<%= @categories.first.name %>" >
-      <% @categories.first.products.each do| prod | %>
+    <div class="tab-pane fade active in" id = "<%= @categories&.first&.name %>" >
+      <% @categories&.first&.products&.each do| prod | %>
         <div class="col-sm-3">
           <div class="product-image-wrapper">
             <div class="single-products">
