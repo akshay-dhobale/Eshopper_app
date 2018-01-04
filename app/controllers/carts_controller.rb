@@ -17,6 +17,7 @@ class CartsController < ApplicationController
           else
             @cart = Cart.create(product_id: product_id, user_id: current_user.id, quantity: session[product_id.to_s])
           end
+          binding.pry
           @cart.save!
           session.delete(product_id.to_s)
         end
