@@ -146,8 +146,6 @@ ActiveRecord::Schema.define(version: 20180102153549) do
     t.bigint "address_id"
     t.bigint "coupon_id"
     t.bigint "payment_gateway_id"
-    t.float "grand_total"
-    t.float "shipping_charges"
     t.integer "status"
     t.index ["address_id"], name: "index_orders_on_address_id"
     t.index ["coupon_id"], name: "index_orders_on_coupon_id"
