@@ -1,4 +1,6 @@
+debugger
 $("#brand_product").hide(4);
 $("#brand_product").empty();
 $("#brand_product").show(700);
-$("<%= j render  'home/featured_items'  %>").appendTo("#brand_product"); 
+$("#brand_product").html("<%= j render  'home/featured_items'  %>")
+ 

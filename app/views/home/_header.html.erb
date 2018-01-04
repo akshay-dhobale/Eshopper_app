@@ -30,7 +30,7 @@
                   <a><%= current_user.email %></a>
                 <% end %>
               </li>
-              <li>
+              <li id="account">
                 <% if user_signed_in? %>
                   <a classs="dropdown-toggle" data-toggle="dropdown"> Account</a>
                   <ul class="dropdown-menu">
@@ -71,3 +71,11 @@
     </div>
   </div><!--/header-middle-->
 </header>
+
+<script>
+   $(document).ready(function(){
+    $("#account").on('click', function(){
+      $('#account').addClass('open')       
+    });
+  });
+</script>
