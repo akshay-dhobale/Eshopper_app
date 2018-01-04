@@ -3,8 +3,3 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 
-$(document).ready(function(){
-  $("#applycoupon").click(function(){
-     var code = $("#code").val();
-  })
-})
