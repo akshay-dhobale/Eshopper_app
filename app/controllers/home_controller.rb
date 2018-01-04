@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
   def index
-    @banner = Banner.all
+    @banners = Banner.all
     @categories = Category.all
     @brands = Brand.all
     @productcategories = ProductCategory.all
