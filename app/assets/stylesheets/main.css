@@ -2539,3 +2539,8 @@ h2.title {
 .btn-margin{
   margin-top: 10px;
 }
+
+.features_items {
+  max-height: 1000px;
+  overflow-y: auto;
+}

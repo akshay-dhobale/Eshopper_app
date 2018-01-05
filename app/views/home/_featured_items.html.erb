@@ -2,7 +2,7 @@
 <div id="flash_cart_featured">
   
 </div>
-<div class="features_items" id = "brand_product"><!--features_items-->
+<div class="features_items " id = "brand_product"><!--features_items-->
   <h2 class="title text-center">Features Items</h2>
   <% if @products.count == 0 %>
     <div>
@@ -10,7 +10,7 @@
     </div>
   <% else%>
     <% @products.each_with_index do |prod , index|%>
-      <% if index < 6 %>
+      <%# if index < 6 %>
         <div class="col-sm-4">
           <div class="product-image-wrapper">
             <div class="single-products"> 
@@ -26,10 +26,10 @@
                   <% end %>
                 </p>
               </div>
-              <% if index == 0 %>
-                <img src="/assets/home/new.png" class="new" alt="" />
-              <% else %>
+              <% if prod.price > 50 %>
                 <img src="/assets/home/sale.png" class="new" alt="" />
+              <% else %>
+                <!-- <img src="/assets/home/new.png" class="new" alt="" /> -->
               <% end %>
             </div>
             <div class="choose">
@@ -50,7 +50,7 @@
             </div>
           </div>
         </div>
-      <% end %>
+      <%# end %>
     <% end %>
   <% end %>
 </div>
