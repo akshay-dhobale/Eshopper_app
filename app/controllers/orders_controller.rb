@@ -53,7 +53,7 @@ class OrdersController < ApplicationController
           @order_details.save
           cart_item.delete
         end
-        OrderMailer.order_created(@order, @order.order_details).deliver_now
+        OrderMailer.order_created(@order, @order.order_details).deliver_later
       end
         redirect_to order_path(id: @order.id)
     end
