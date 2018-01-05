@@ -40,7 +40,7 @@ gem 'uglifier', '>= 1.3.0'
 # gem 'uglifier', :git => 'https://github.com/lautis/uglifier.git', :ref => '9abd18da4f5eb2fb4b5aab8023f08470221743c1'
 
 # See https://github.com/rails/execjs#readme for more supported runtimes
-gem 'therubyracer', platforms: :ruby
+# gem 'therubyracer', platforms: :ruby
 
 gem 'rails_admin', '~> 1.2'
 # Use CoffeeScript for .coffee assets and views
