@@ -13,7 +13,7 @@ class User < ApplicationRecord
 
   # after_create :welcome_user
 
-  # after_create :products_in_cart
+  after_create :products_in_cart
   # after_login :product_in_cart
 
   def self.from_omniauth(auth)
