@@ -33,8 +33,4 @@ $(document).ready(function(){
 });
 
 
-// $(document).ready(function(){
-//   $(".blazers").click(function(){
-// })
-// })
 
