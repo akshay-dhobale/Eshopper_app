@@ -32,7 +32,6 @@ class OrdersController < ApplicationController
         @total = @total-@total*(@coupon. percent_off/100)
       end
       @total = @total + @total*0.1
-      binding.pry
       if @total > 200
         @order.grand_total = @total 
         @order.shipping_charges = 0
@@ -53,7 +52,7 @@ class OrdersController < ApplicationController
           @order_details.save
           cart_item.delete
         end
-        OrderMailer.order_created(@order, @order.order_details).deliver_later
+        OrderMailer.order_created(@order, @order.order_details).deliver_now
       end
         redirect_to order_path(id: @order.id)
     end

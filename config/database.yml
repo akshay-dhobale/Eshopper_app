@@ -84,6 +84,6 @@ test:
 #
 production:
   <<: *default
-  database: Eshopper_app_production
-  username: Eshopper_app
-  password: <%= ENV['ESHOPPER_APP_DATABASE_PASSWORD'] %>
+  database: Eshopper_app_development
+  username: eshopper_app
+  password: eshopper
