@@ -67,6 +67,8 @@ Rails.application.routes.draw do
   # resources :users
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   
+  resources :charges
+
   resources :banners
 
   # resources :checkouts

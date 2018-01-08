@@ -29,7 +29,7 @@
             <% @order_detail_products.each do |item|%>
               <tr >
                 <td class="cart_product">
-                  <a href=""><%= image_tag item.product.product_images.first.prod_img.url %></a>
+                  <a href=""><%= image_tag item.product.product_images.first.prod_img.url, :height=>"200px" %></a>
                 </td>
                 <td class="cart_description">
                   <h4><a href=""><%= item.product.name %></a></h4>

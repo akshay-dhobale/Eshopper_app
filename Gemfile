@@ -22,7 +22,7 @@ gem 'devise-bootstrap-views'
 
 gem 'omniauth-twitter'
 
-# gem 'omniauth-google-oauth2'
+gem 'omniauth-google-oauth2'
 
 # for report charts
 gem 'groupdate'
@@ -62,6 +62,8 @@ gem 'ckeditor'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 gem "paperclip", "~> 5.0.0"
+  
+gem 'stripe'
 
 gem 'pry'
 group :development, :test do

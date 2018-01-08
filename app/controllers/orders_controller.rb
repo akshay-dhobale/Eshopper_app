@@ -4,8 +4,6 @@ class OrdersController < ApplicationController
   include CartsHelper
 
   def index
-    # @orders = Order.where(user_id: current_user.id)
-    # @orders = @orders.sort_by &:created_at
     @orders = current_user.orders.order(:created_at).reverse_order
     @user_order_details = OrderDetail.where(order_id: @orders.ids)
   end
@@ -15,9 +13,9 @@ class OrdersController < ApplicationController
   end
 
   def create
-    if !params[:payment_option].present? || params[:payment_option] != "1"
-      redirect_to checkouts_payment_option_path 
-    else
+    if params[:payment_option] == "2"
+      redirect_to new_charge_path
+    elsif params[:payment_option] == "1"
       @order = Order.new
       @order.user_id = current_user.id
       @order.payment_gateway_id = params[:payment_option].to_i
@@ -32,6 +30,7 @@ class OrdersController < ApplicationController
         @total = @total-@total*(@coupon. percent_off/100)
       end
       @total = @total + @total*0.1
+
       if @total > 200
         @order.grand_total = @total 
         @order.shipping_charges = 0
@@ -54,7 +53,9 @@ class OrdersController < ApplicationController
         end
         OrderMailer.order_created(@order, @order.order_details).deliver_now
       end
-        redirect_to order_path(id: @order.id)
+      redirect_to order_path(id: @order.id)
+    else
+      redirect_to checkouts_payment_option_path
     end
   end
 
