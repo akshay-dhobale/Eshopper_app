@@ -22,6 +22,8 @@ gem 'devise-bootstrap-views'
 
 gem 'omniauth-twitter'
 
+gem 'omniauth-facebook'
+
 gem 'omniauth-google-oauth2'
 
 # for report charts
