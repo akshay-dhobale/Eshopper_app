@@ -32,11 +32,17 @@ class UsersController < ApplicationController
 
   def update
     @user = current_user
-    respond_to do |format|
-      if @user.update(user_params)
-        format.html { redirect_to edit_user_path(id: current_user), notice: 'User was successfully updated.' }
-      else
-        format.html { render :edit }
+    if @user.email == params[:user][:email]
+      respond_to do |format|
+        format.html {redirect_to user_enter_email_path(@user.id), notice:'Must enter new email address'}
+      end
+    else
+      respond_to do |format|
+        if @user.update(user_params)
+          format.html { redirect_to root_path, notice: 'User was successfully updated.' }
+        else
+          format.html { redirect_to user_enter_email_path(@user.id), notice: 'Email already exist' }
+        end
       end
     end
   end
@@ -48,6 +54,10 @@ class UsersController < ApplicationController
     end
   end
 
+  def enter_email
+    @user = current_user
+  end
+
   private
     def set_user
       @user = User.find(params[:id])
@@ -55,6 +65,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:firstname, :lastname)
+      params.require(:user).permit(:firstname, :lastname, :email)
     end
 end

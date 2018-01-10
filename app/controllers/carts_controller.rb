@@ -115,12 +115,9 @@ class CartsController < ApplicationController
     if params[:commit] == "remove"
       session[:coupon_id] = nil
     else
-      @coupon = Coupon.where(code: params[:code])
-
-      @coupon.each { |coupon|
-        @discount = coupon.percent_off
-        session[:coupon_id] = coupon.id
-      }
+      @coupon = Coupon.find_by(code: params[:code])
+      @discount = @coupon.percent_off
+      session[:coupon_id] = @coupon.id
     end
     if current_user.present?
       @total = cost_user_cart

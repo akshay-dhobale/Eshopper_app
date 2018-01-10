@@ -9,7 +9,6 @@
         <div class="chose_area">
           <%= form_for :add_coupon, :url => { :method => :get, :action => :add_coupon },remote: true do|f|%>
             <input type="text" name="code" <% if @coupon.present? %> value=<%= @coupon.code%> <%end%>>
-            <!-- <input type="submit"> -->
             <span id="coupon_button">
               <% if session[:coupon_id].present? && session[:coupon_id] != nil %>
                 <%= f.submit "remove", data:{remote: true} %>

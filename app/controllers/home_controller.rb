@@ -1,4 +1,8 @@
 class HomeController < ApplicationController
+  before_action :new_email
+
+  
+
   def index
     @banners = Banner.all
     @categories = Category.all
@@ -28,5 +32,12 @@ class HomeController < ApplicationController
   private
     def home_params
       params.require(:home).permit(:email)
+    end
+    def new_email
+      if user_signed_in? && current_user.email == "#{current_user.uid}@home.com"
+        respond_to do |format|
+          format.html {redirect_to user_enter_email_path(current_user.id), notice:"Must enter new email address"}
+        end
+      end
     end
 end

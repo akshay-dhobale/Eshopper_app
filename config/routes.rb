@@ -82,7 +82,9 @@ Rails.application.routes.draw do
 
   resources :wishlists
   
-  resources :users
+  resources :users do 
+    get 'enter_email'
+  end
 
   # resources :newsletters
   resources :contact_us
