@@ -39,6 +39,7 @@ class UsersController < ApplicationController
     else
       respond_to do |format|
         if @user.update(user_params)
+          # UserMailer.user_created(@user.deliver_later
           format.html { redirect_to root_path, notice: 'User was successfully updated.' }
         else
           format.html { redirect_to user_enter_email_path(@user.id), notice: 'Email already exist' }

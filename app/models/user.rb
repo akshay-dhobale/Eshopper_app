@@ -4,10 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  # devise :omniauthable, omniauth_providers: %i[twitter]
-  # devise :omniauthable, omniauth_providers: %i[facebook]
   devise :omniauthable, :omniauth_providers =>[:twitter, :facebook,:google_oauth2]
-
 
   has_many :wishlists, dependent: :destroy
   has_many :addresses, dependent: :destroy
