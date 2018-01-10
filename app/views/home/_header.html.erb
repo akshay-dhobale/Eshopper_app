@@ -37,7 +37,9 @@
                     <li><%= link_to orders_path do %>My Orders<% end %></li>
                     <li><%= link_to edit_user_path(id: current_user)  do %>Edit Account<% end %> </li>
                     <li><%= link_to addresses_path do %>Manage Addresses<% end %></li>
-                    <li><%= link_to edit_user_registration_path do %>Change Log In credentials <% end %></li>
+                    <% if !current_user.uid?%> 
+                      <li><%= link_to edit_user_registration_path do %>Change Log In credentials <% end %></li>
+                    <% end %>
                   </ul>
                 <% end %>
               </li>
