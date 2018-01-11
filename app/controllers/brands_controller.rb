@@ -6,6 +6,7 @@ class BrandsController < ApplicationController
     @products = Product.all
     @brand = Brand.find(params[:id])
     @products = @brand.products
+    
     respond_to do |format|
       format.js
       format.html

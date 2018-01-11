@@ -9,6 +9,7 @@ class CartsController < ApplicationController
     if current_user.present?
       b =  session.keys 
       @p = b.map(&:to_i)
+      
       @p.each do |product_id|
         if product_id != 0
           @cart = Cart.find_by(product_id: product_id, user_id: current_user.id)
@@ -17,7 +18,6 @@ class CartsController < ApplicationController
           else
             @cart = Cart.create(product_id: product_id, user_id: current_user.id, quantity: session[product_id.to_s])
           end
-          binding.pry
           @cart.save!
           session.delete(product_id.to_s)
         end

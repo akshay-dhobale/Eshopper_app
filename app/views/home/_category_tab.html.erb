@@ -4,7 +4,6 @@
     <ul class="nav nav-tabs" >
       <% @categories.each_with_index do |category, index| %>
         <li>
-        <%# binding.pry %>
           <%= link_to category_path(id:category.id), id:category.id, data: { remote: true} do %>
             <%= category.name %>
           <% end %>
