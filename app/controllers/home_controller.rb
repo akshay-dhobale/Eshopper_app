@@ -1,8 +1,6 @@
 class HomeController < ApplicationController
   before_action :new_email
 
-  
-
   def index
     @banners = Banner.all
     @categories = Category.all

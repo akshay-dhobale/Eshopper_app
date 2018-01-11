@@ -1,14 +1,14 @@
 class CheckoutsController < ApplicationController
-	  include CartsHelper
+    include CartsHelper
 
 
   def address_select
-  	@totaladdress = Address.where(user_id: current_user.id)
+    @totaladdress = Address.where(user_id: current_user.id)
     
   end
 
   def payment_review
-  	@order_address = Address.find(params[:address_id])
+    @order_address = Address.find(params[:address_id])
     session[:address_id] = params[:address_id]
     @cart_user = Cart.where(user_id: current_user.id)
     @total = cost_user_cart()
@@ -19,6 +19,6 @@ class CheckoutsController < ApplicationController
   end
 
   def add_address
-  	
+    
   end
 end

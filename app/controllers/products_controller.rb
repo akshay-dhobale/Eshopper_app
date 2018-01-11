@@ -1,8 +1,8 @@
 class ProductsController < ApplicationController
     # @products = Product.all
   def show  
-  	@categories = Category.all
-  	@brands = Brand.all
+    @categories = Category.all
+    @brands = Brand.all
     @product = Product.find(params[:id])
     @br = @product.brand_id
 
