@@ -6,6 +6,11 @@ class OrdersController < ApplicationController
   def index
     @orders = current_user.orders.order(:created_at).reverse_order
     @user_order_details = OrderDetail.where(order_id: @orders.ids)
+    respond_to do |format|
+      format.html
+      format.csv { send_data @orders.to_csv }
+      format.xls #{ send_data @orders.to_csv(col_sep: "\t") }
+    end
   end
 
   def new

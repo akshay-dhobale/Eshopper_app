@@ -29,15 +29,14 @@
       <img src="/assets/product-details/new.jpg" class="newarrival" alt="" />
       <h2><%= @product.name%></h2>
       <p>Product ID: <%= @product.id %></p>
-      <img src="/assets/product-details/rating.png" alt="" />
+      <!-- <img src="/assets/product-details/rating.png" alt="" /> -->
       <span>
         <span>US $<%= @product.price%></span>
-        <p class="btn btn-default add-to-cart" data-no-turbolink>
-          <i class="fa fa-shopping-cart"></i>
-          <%= link_to carts_create_path(product_id: @product.id), method:"post", id:@product.id, data: { remote: true } do %>
-          Add to cart
+        <span>
+          <%= link_to carts_create_path(product_id: @product.id), method:"post", id:@product.id, :class=>"btn btn-default add-to-cart", data: { remote: true } do %>
+          <i class="fa fa-shopping-cart"></i>Add to cart
           <% end %>
-        </p>
+        </span>
       </span>
       <p><b>Availability:</b> <% if  @product.quantity.present? && @product.quantity > 0 %>  In Stock <% else %> Out of Stock <% end %></p>
       <p><b>Condition:</b> New</p>

@@ -14,16 +14,18 @@ class User < ApplicationRecord
   after_create :welcome_user
 
   def self.from_omniauth(auth)
-
+    binding.pry
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       if auth.info.email == nil || auth.info.email == ""
         user.email = "#{auth.uid}@home.com"
         user.password = Devise.friendly_token[0,20]
         user.firstname = auth.info.name   # assuming the user model has a name
+        user.provider = auth.provider
       else
         user.email = auth.info.email
         user.password = Devise.friendly_token[0,20]
         user.firstname = auth.info.name   # assuming the user model has a name
+        user.provider = auth.provider
       end
     end
   end
@@ -35,6 +37,14 @@ class User < ApplicationRecord
   def welcome_user
     UserMailer.user_created(self).deliver_now
   end
- 
+  
+  def self.to_csv(options = {})
+    CSV.generate(options) do |csv|
+      csv << column_names
+      all.each do |user|
+        csv << user.attributes.values_at(*column_names)
+      end
+    end
+  end
 end
 

@@ -1,0 +1,2 @@
+module CouponsUsedsHelper
+end

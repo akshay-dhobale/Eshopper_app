@@ -1,5 +1,12 @@
 class ProductsController < ApplicationController
     # @products = Product.all
+
+  def index
+    @products = Product.order(:name)
+    respond_to do |format|
+      format.html
+    end
+  end
   def show  
     @categories = Category.all
     @brands = Brand.all

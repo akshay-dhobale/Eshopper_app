@@ -35,7 +35,7 @@ class AddressesController < ApplicationController
     @address.update(address_params)
 
     if params[:flag] == "checkout"
-      redirect_to checkouts_payment_review_path(address_id: @address.id)
+      redirect_to checkouts_address_select_path
     else
       redirect_to addresses_path
     end

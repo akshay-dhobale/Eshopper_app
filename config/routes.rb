@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'coupons_useds/index'
+
   get 'reports/sales_report'
 
   get 'reports/customer_registered'

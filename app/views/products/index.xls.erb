@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:o="urn:schemas-microsoft-com:office:office"
+  xmlns:x="urn:schemas-microsoft-com:office:excel"
+  xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:html="http://www.w3.org/TR/REC-html40">
+  <Worksheet ss:Name="Sheet1">
+    <Table>
+      <Row>
+        <Cell><Data ss:Type="String">ID</Data></Cell>
+        <Cell><Data ss:Type="String">User_id</Data></Cell>
+        <Cell><Data ss:Type="String">Order_id</Data></Cell>
+        <Cell><Data ss:Type="String">Coupon_id</Data></Cell>
+        <Cell><Data ss:Type="String">Created_At</Data></Cell>
+      </Row>
+    <% @coupons_useds.each do |coupons_used| %>
+      <Row>
+        <Cell><Data ss:Type="Number"><%= coupons_used.id %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= coupons_used.user_id %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= coupons_used.order_id %></Data></Cell>
+        <Cell><Data ss:Type="Number"><%= coupons_used.coupon_id %></Data></Cell>
+        <Cell><Data ss:Type="Number"><%= coupons_used.created_at %></Data></Cell>
+      </Row>
+    <% end %>
+    </Table>
+  </Worksheet>
+</Workbook>

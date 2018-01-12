@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:o="urn:schemas-microsoft-com:office:office"
+  xmlns:x="urn:schemas-microsoft-com:office:excel"
+  xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:html="http://www.w3.org/TR/REC-html40">
+  <Worksheet ss:Name="Card Collection">
+    <Table>
+      <Row>
+        <Cell><Data ss:Type="String">Name</Data></Cell>
+        <Cell><Data ss:Type="String">Text</Data></Cell>
+        <Cell><Data ss:Type="String">Set</Data></Cell>
+      </Row>
+    <% @collection.cards.each do |card| %>
+      <Row>
+        <Cell><Data ss:Type="String"><%= card.name %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= card.text %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= card.set %></Data></Cell>
+      </Row>
+    <% end %>
+    </Table>
+  </Worksheet>
+</Workbook>

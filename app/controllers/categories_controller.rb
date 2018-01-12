@@ -12,7 +12,8 @@ class CategoriesController < ApplicationController
     @cat = Category.find(params[:id])
     @cat_products = @cat.products
     respond_to do |format|
-      format.js 
+      format.js
+      # format.csv {render text: @cat.to_csv} 
     end
   end
 

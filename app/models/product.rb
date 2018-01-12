@@ -20,4 +20,6 @@ class Product < ApplicationRecord
   has_many :product_attributes, through: :product_attribute_assocs
 
   has_many :product_attribute_values, through: :product_attribute_assocs
+
+  
 end
