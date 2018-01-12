@@ -11,4 +11,5 @@ module HomeHelper
     end
     @count
   end
+
 end
