@@ -57,4 +57,11 @@ RailsAdmin.config do |config|
     end
   end
 
+  config.model Banner do
+    edit do
+      field :description, :ck_editor
+      field :image
+    end
+  end
+
 end
