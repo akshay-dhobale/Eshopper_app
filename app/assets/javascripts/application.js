@@ -19,4 +19,3 @@
 //= require chartkick
 
 //= require_tree . 
-require 'csv'
