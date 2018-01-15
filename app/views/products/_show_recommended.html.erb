@@ -9,7 +9,9 @@
               <div class="product-image-wrapper">
                 <div class="single-products">
                   <div class="productinfo text-center">
-                    <%= image_tag image.product_images.first.prod_img.url %>
+                    <%= link_to products_show_path(id:image.id) do %>
+                      <%= image_tag image.product_images.first.prod_img.url %>
+                      <% end %>
                     <h2>$<%= image.price%></h2>
                     <p><%= image.name %></p>
                     <p title="Click to add to your cart" class="btn btn-default add-to-cart" data-no-turbolink><i   class="fa fa-shopping-cart"></i>
