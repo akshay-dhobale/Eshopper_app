@@ -1,11 +1,5 @@
 <%= render '/home/header' %>
-<div class="container" >
-  <br><br><br>
-  <%#= link_to "Sales Report", reports_sales_report_path, class: "btn btn-primary" %><br>
-  <%#= link_to "Customer Registered", reports_customer_registered_path, class: "btn btn-primary" %><br>
-  <%#= link_to "Coupons used", reports_coupons_used_path, class: "btn btn-primary"%>
-  <br><br><br>
-</div>
+<br><br><br>
 <div class="container">
   <ul class="nav nav-tabs">
     <li class="active"><a data-toggle="tab" href="#sales_report">Sales Report</a></li>
@@ -15,6 +9,7 @@
   <br><br>
   <div class="tab-content">
     <div id="sales_report" class="tab-pane fade in active">
+      <p><h3>Sales</h3></p>
       <p>
         Download:
         <%= link_to "CSV", orders_path(format: "csv") %> |
@@ -23,6 +18,7 @@
       <p><%= area_chart @order_count %></p>
     </div>
     <div id="customer_registered" class="tab-pane fade">
+      <p><h3>Customer Registered</h3></p>
       <p>
         Download:
         <%= link_to "CSV", users_path(format: "csv") %> |
@@ -31,18 +27,14 @@
       <p><%= area_chart @user_count %></p>
     </div>
     <div id="coupons_used" class="tab-pane fade">
+      <p><h3>Coupons Used</h3></p>
       <p>
         Download:
         <%= link_to "CSV", coupons_useds_index_path(format: "csv") %> |
         <%= link_to "Excel", coupons_useds_index_path(format: "xls") %>
       </p>
-      <p><%= column_chart @coupon_count %></p>
+      <p><%= area_chart @coupon_count %></p>
     </div>
   </div>
 
 </div>
-<p>
-  <!-- Download: -->
-  <%#= link_to "CSV", users_path(format: "csv") %> |
-  <%#= link_to "Excel", users_path(format: "xls") %>
-</p>
