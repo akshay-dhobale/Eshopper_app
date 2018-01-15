@@ -8,9 +8,9 @@
     <Table>
       <Row>
         <Cell><Data ss:Type="String">ID</Data></Cell>
-        <Cell><Data ss:Type="String">User_id</Data></Cell>
+        <Cell><Data ss:Type="String">User_Email</Data></Cell>
         <Cell><Data ss:Type="String">Order_id</Data></Cell>
-        <Cell><Data ss:Type="String">Coupon_id</Data></Cell>
+        <Cell><Data ss:Type="String">Coupon_Code</Data></Cell>
         <Cell><Data ss:Type="String">Created_At</Data></Cell>
       </Row>
     <% @coupons_useds.each do |coupons_used| %>
@@ -18,7 +18,7 @@
         <Cell><Data ss:Type="Number"><%= coupons_used.id %></Data></Cell>
         <Cell><Data ss:Type="String"><%= coupons_used.user.email %></Data></Cell>
         <Cell><Data ss:Type="String"><%= coupons_used.order_id %></Data></Cell>
-        <Cell><Data ss:Type="Number"><%= coupons_used.coupon_id %></Data></Cell>
+        <Cell><Data ss:Type="string"><%= coupons_used.coupon.code %></Data></Cell>
         <Cell><Data ss:Type="datetime"><%= coupons_used.created_at %></Data></Cell>
       </Row>
     <% end %>
