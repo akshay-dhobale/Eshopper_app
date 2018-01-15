@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   def index
-    @users = User.order(:firstname)
+    @users = User.order(:id)
     respond_to do |format|
       # format.html
       format.csv { send_data @users.to_csv }
