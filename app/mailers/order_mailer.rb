@@ -14,7 +14,7 @@ class OrderMailer < ApplicationMailer
       @coupon_used = Coupon.find(@order.coupon_id)
     end
     @order_details = order_details
-    @url  = 'http://example.com/login'
+    @url  = 'akshay-eshopper.herokuapp.com/users/sign_in'
     attachments.inline['logo.png'] = File.read('app/assets/images/home/logo.png')
     
     @order_details.each do |order_image|
@@ -32,7 +32,7 @@ class OrderMailer < ApplicationMailer
       @coupon_used = Coupon.find(@order.coupon_id)
     end
     @order_details = order_details
-    @url  = 'http://example.com/login'
+    @url  = 'akshay-eshopper.herokuapp.com/users/sign_in'
     attachments.inline['logo.png'] = File.read('app/assets/images/home/logo.png')
     @order_details.each do |order_image|
       if File.exist?(order_image.product.product_images.first.prod_img.path)

@@ -9,7 +9,7 @@ class NewsletterMailer < ApplicationMailer
 
   def subscribed_user(email)
     @email = email
-    @url  = 'http://example.com/login'
+    @url  = 'akshay-eshopper.herokuapp.com'
     attachments.inline['logo.png'] = File.read('app/assets/images/home/logo.png')
     mail(to: @email, subject: 'Subscribed to Eshopper Newslettr')
   end
@@ -17,6 +17,7 @@ class NewsletterMailer < ApplicationMailer
   def newsletter_email(content, email)
     @content = content
     @subscribed_email= email
+    @url  = 'akshay-eshopper.herokuapp.com'
     attachments.inline['logo.png'] = File.read('app/assets/images/home/logo.png')
     mail(to: @subscribed_email.email, subject: 'Your weekly Newsletter from Eshopper')
   end
