@@ -8,6 +8,7 @@ class AddressesController < ApplicationController
   def create
     @address = Address.create(address_params)
     @address.user_id = current_user.id
+    @address.status = "active"
     @address.save!
     
     if params[:flag] == "checkout"
@@ -18,7 +19,7 @@ class AddressesController < ApplicationController
   end
 
   def index
-    @address = Address.where(user_id: current_user.id)
+    @address = Address.where(user_id: current_user.id, status: "active")
   end
 
   def show
@@ -44,7 +45,8 @@ class AddressesController < ApplicationController
   def destroy
     @address = Address.find(params[:id])
     @flag = params[:flag]
-    @address.destroy
+    @address.status = "inactive"
+    @address.save
 
     if @flag.present?
       redirect_to checkouts_address_select_path(user_id: current_user.id)

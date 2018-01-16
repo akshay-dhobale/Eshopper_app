@@ -14,7 +14,6 @@ class User < ApplicationRecord
   after_create :welcome_user
 
   def self.from_omniauth(auth)
-    binding.pry
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       if auth.info.email == nil || auth.info.email == ""
         user.email = "#{auth.uid}@home.com"

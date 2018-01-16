@@ -3,7 +3,7 @@ class CheckoutsController < ApplicationController
 
 
   def address_select
-    @totaladdress = Address.where(user_id: current_user.id)
+    @totaladdress = Address.where(user_id: current_user.id, status: "active")
     
   end
 
