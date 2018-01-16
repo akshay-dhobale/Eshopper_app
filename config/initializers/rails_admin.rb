@@ -46,7 +46,7 @@ RailsAdmin.config do |config|
   config.model Cm do
     edit do
       field :title
-      field :content, :ck_editor
+      # field :content, :ck_editor
       field :meta_description, :ck_editor
     end
   end
