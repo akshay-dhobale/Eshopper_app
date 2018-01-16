@@ -1,40 +1,23 @@
 <%= render '/home/header' %>
-<br><br><br>
+<br>
+<h1 class="container">Reports</h1>
+<br><br>
 <div class="container">
   <ul class="nav nav-tabs">
-    <li class="active"><a data-toggle="tab" href="#sales_report">Sales Report</a></li>
-    <li><a data-toggle="tab" href="#customer_registered">Customer Registered</a></li>
-    <li><a data-toggle="tab" href="#coupons_used">Coupons used</a></li>
+    <li id="sales" class="active"><%= link_to "Sales Report", reports_sales_report_path ,data:{remote: true,} %></li>
+    <li id="customer"><%= link_to "Customer Registered", reports_customer_registered_path, data:{remote: true} %></li>
+    <li id="coupons"><%= link_to "Coupons used", reports_coupons_used_path, data:{remote: true} %></li>
   </ul>
-  <br><br>
-  <div class="tab-content">
-    <div id="sales_report" class="tab-pane fade in active">
-      <p><h3>Sales</h3></p>
+  <div id="report_chart">
+    <div class="container">
+      <p class="report_title">Sales Report</p><br>
       <p>
         Download:
         <%= link_to "CSV", orders_path(format: "csv") %> |
         <%= link_to "Excel", orders_path(format: "xls") %>
       </p>
-      <p><%= area_chart @order_count, download: "Sales Chart" %></p>
-    </div>
-    <div id="customer_registered" class="tab-pane fade">
-      <p><h3>Customer Registered</h3></p>
-      <p>
-        Download:
-        <%= link_to "CSV", users_path(format: "csv") %> |
-        <%= link_to "Excel", users_path(format: "xls") %>
-      </p>
-      <p><%= area_chart @user_count, download: "Customer Registered" %></p>
-    </div>
-    <div id="coupons_used" class="tab-pane fade">
-      <p><h3>Coupons Used</h3></p>
-      <p>
-        Download:
-        <%= link_to "CSV", coupons_useds_index_path(format: "csv") %> |
-        <%= link_to "Excel", coupons_useds_index_path(format: "xls") %>
-      </p>
-      <p><%= area_chart @coupon_count, download: "Coupons Used" %></p>
+      <br><br>
+      <%= area_chart Order.group_by_day(:created_at).count, download: "Sales Chart" %>
     </div>
   </div>
 </div>
-<br><br><br>

@@ -1,0 +1,11 @@
+<div class="container">
+  <p class="report_title">Coupons Used</p><br>
+  <p>
+    Download:
+    <%= link_to "CSV", coupons_useds_index_path(format: "csv") %> |
+    <%= link_to "Excel", coupons_useds_index_path(format: "xls") %>
+  </p>
+  <br><br>
+  <%= area_chart @data, download: "Coupons Used" , id: SecureRandom.hex(7)  %>
+</div>
+

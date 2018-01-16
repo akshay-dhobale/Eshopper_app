@@ -1,0 +1,5 @@
+$("#report_chart").empty();
+$("#customer").attr("class","inactive")
+$("#sales").attr("class","active")
+$("#coupons").attr("class","inactive")
+$("#report_chart").html("<%= j render 'sales_report'%>")

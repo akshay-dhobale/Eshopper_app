@@ -1,0 +1,11 @@
+  <div class="container">
+    <p class="report_title">Customer Registered</p><br>
+    <p>
+      Download:
+      <%= link_to "CSV", users_path(format: "csv") %> |
+      <%= link_to "Excel", users_path(format: "xls") %>
+    </p>
+    <br><br>
+    <%= area_chart @data, download: "Customer Registered", id: SecureRandom.hex(7) %>
+  </div>
+
