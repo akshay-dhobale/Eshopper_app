@@ -15,7 +15,7 @@
         <%= link_to "CSV", orders_path(format: "csv") %> |
         <%= link_to "Excel", orders_path(format: "xls") %>
       </p>
-      <p><%= area_chart @order_count %></p>
+      <p><%= area_chart @order_count, download: "Sales Chart" %></p>
     </div>
     <div id="customer_registered" class="tab-pane fade">
       <p><h3>Customer Registered</h3></p>
@@ -24,7 +24,7 @@
         <%= link_to "CSV", users_path(format: "csv") %> |
         <%= link_to "Excel", users_path(format: "xls") %>
       </p>
-      <p><%= area_chart @user_count %></p>
+      <p><%= area_chart @user_count, download: "Customer Registered" %></p>
     </div>
     <div id="coupons_used" class="tab-pane fade">
       <p><h3>Coupons Used</h3></p>
@@ -33,7 +33,7 @@
         <%= link_to "CSV", coupons_useds_index_path(format: "csv") %> |
         <%= link_to "Excel", coupons_useds_index_path(format: "xls") %>
       </p>
-      <p><%= area_chart @coupon_count %></p>
+      <p><%= area_chart @coupon_count, download: "Coupons Used" %></p>
     </div>
   </div>
 </div>
