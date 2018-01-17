@@ -9,7 +9,7 @@ class ReportsController < ApplicationController
   end
 
   def customer_registered
-    @data = User.group_by_day(:created_at).count
+    @data = User.group_by_month(:created_at).count
   end
 
   def coupons_used
