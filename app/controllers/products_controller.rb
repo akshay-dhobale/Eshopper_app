@@ -12,9 +12,11 @@ class ProductsController < ApplicationController
     @brands = Brand.all
     @product = Product.find(params[:id])
     @br = @product.brand_id
-
+    @product_rating = ProductRating.where(product_id:@product.id, user_id:current_user.id)
+    @product_rating_all = ProductRating.where(product_id: @product.id )
     @cart = Cart.new
     @brand_prod = Product.where(brand_id: @br)
+
     if current_user.present?
       @cart_user = Cart.where(user_id: current_user.id)
       @count = @cart_user.count()

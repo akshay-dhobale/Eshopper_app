@@ -1,3 +1,6 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
+
 <div class="product-details"><!--product-details-->
   <div class="col-sm-5">
     <div class="view-product">
@@ -38,6 +41,8 @@
           <% end %>
         </span>
       </span>
+      
+      <br>
       <p><b>Availability:</b> <% if  @product.quantity.present? && @product.quantity > 0 %>  In Stock <% else %> Out of Stock <% end %></p>
       <p><b>Condition:</b> New</p>
       <p><b>Brand:</b> <%= @product.brand.name %></p>
@@ -47,5 +52,59 @@
       <a href=""><img src="/assets/product-details/share.png" class="share img-responsive"  alt="" /></a>
     </div><!--/product-information-->
   </div>
+  <!-- Rating for product -->
+  <div class="raty_block pull-right">
+    <% if !@product_rating.present?%>
+    Seems like you haven't rated this product..
+      <p><div id="rateYo" class="">
+      </div></p>
+      <p><textarea rows="4" cols="50" name="comment" id="comment"></textarea></p>
+      <p><button id="getRating" >Post Review</button></p>
+    <% end %>
+    <div class="">
+      <% @product_rating_all.each do |product_rating| %>
+        <div class="well">
+          <%= product_rating.user.email%>
+          <div id="rateYo_<%= product_rating.user_id%>" ></div><br>
+          <p><h4><%= product_rating.comment%></h4></p>
+        </div>
+        <script>
+          $(function () {
+            $("#rateYo_<%= product_rating.user_id%>").rateYo({
+              rating: "<%= product_rating.rating%>",
+              readOnly: true,
+              starWidth: "25px"
+            });
+          });
+        </script>
+      <% end %>
+    </div>
+  </div>
 </div><!--/product-details-->
 
+
+
+
+<script type="text/javascript">
+  $(function () {
+    var $rateYo = $("#rateYo").rateYo();
+    $("#getRating").click(function () {
+      /* get rating */
+      var rating = $rateYo.rateYo("rating");
+      window.alert("Its " + rating + " Yo!");
+      var comment = $("#comment").val()
+      debugger
+      $.ajax({
+        method: 'post',
+        beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+        url: "/product_ratings",
+        data:{
+          rating: rating,
+          comment: comment,
+          product_id: "<%= @product.id %>",
+        }
+      })
+    });
+    $rateYo.rateYo("option", "halfStar", true);
+  });
+</script>

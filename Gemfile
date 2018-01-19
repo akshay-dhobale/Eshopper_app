@@ -18,7 +18,11 @@ gem 'flex-slider-rails'
 gem 'devise-bootstrap-views'
 
 # gem 'jquery-rails'
-# 
+
+# Rating for product 
+gem 'rateyo-rails'
+# gem 'ratyrate'
+
 
 gem 'omniauth-twitter'
 

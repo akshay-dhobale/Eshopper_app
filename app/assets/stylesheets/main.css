@@ -2546,3 +2546,12 @@ h2.title {
   max-height: 1000px;
   overflow-y: auto;
 }
+
+.raty_block{
+  display: inline-block;
+}
+
+.posted_comment{
+  display: flex;
+  overflow-x: auto;
+}

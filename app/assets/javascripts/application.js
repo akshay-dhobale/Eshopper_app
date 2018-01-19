@@ -17,4 +17,5 @@
 //= require ckeditor/init
 //= require Chart.bundle
 //= require chartkick
+//= require jquery.rateyo
 //= require_tree . 

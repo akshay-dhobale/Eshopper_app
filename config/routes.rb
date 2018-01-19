@@ -69,6 +69,8 @@ Rails.application.routes.draw do
   resources :contact_us
 
   resources :cms
+
+  resources :product_ratings
   
   resources :orders do 
     get 'details', on: :member
