@@ -14,22 +14,26 @@
     <P><b>To Post Review </b></P>
     <p><%= link_to "Log In", new_user_session_path,:class=>"btn btn-default" %> </p>
   <% end%>
-  <div class="col-sm-12">
-    <% @product_rating_all.each do |product_rating| %>
-      <div class="well col-sm-4">
-        <div id="rateYo_<%= product_rating.user_id%>" ></div><br>
-        <p><h4><i><%= product_rating.comment%></i></h4></p>
-        by <b><%= product_rating.user.email%></b>
-      </div>
-      <script>
-        $(function () {
-          $("#rateYo_<%= product_rating.user_id%>").rateYo({
-            rating: "<%= product_rating.rating%>",
-            readOnly: true,
-            starWidth: "25px"
+  <button type="button" class="btn btn-warning pull-right show_more" data-toggle="collapse" data-target="#posted_rating">Show All Rating</button>
+  <div id="posted_rating" class="collapse">
+    <div class="col-sm-12">
+      <br><br><br>
+      <% @product_rating_all.each do |product_rating| %>
+        <div class="well col-sm-4">
+          <div id="rateYo_<%= product_rating.user_id%>" ></div><br>
+          <p><h4><i><%= product_rating.comment%></i></h4></p>
+          by <b><%= product_rating.user.email%></b>
+        </div>
+        <script>
+          $(function () {
+            $("#rateYo_<%= product_rating.user_id%>").rateYo({
+              rating: "<%= product_rating.rating%>",
+              readOnly: true,
+              starWidth: "25px"
+            });
           });
-        });
-      </script>
-    <% end %>
+        </script>
+      <% end %>
+    </div>
   </div>
 </div>
