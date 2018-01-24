@@ -1,4 +1,7 @@
 <div class="raty_block pull-center col-sm-12">
+  <br>
+  <h3>Customer Rating</h3>
+  <br>
   <% if current_user.present?%>
     <% if !@product_rating.present?  %>
     <b>Seems like you haven't rated this product..</b><br>
@@ -8,15 +11,15 @@
       <p><button class="getRating" id="product_<%= @product.id %>" >Post Review</button></p>
     <% end %>
   <% else %>
-    <P>To Post Review </P>
+    <P><b>To Post Review </b></P>
     <p><%= link_to "Log In", new_user_session_path,:class=>"btn btn-default" %> </p>
   <% end%>
   <div class="col-sm-12">
     <% @product_rating_all.each do |product_rating| %>
       <div class="well col-sm-4">
-        <%= product_rating.user.email%>
         <div id="rateYo_<%= product_rating.user_id%>" ></div><br>
-        <p><h4><%= product_rating.comment%></h4></p>
+        <p><h4><i><%= product_rating.comment%></i></h4></p>
+        by <b><%= product_rating.user.email%></b>
       </div>
       <script>
         $(function () {

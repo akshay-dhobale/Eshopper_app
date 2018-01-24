@@ -4,7 +4,6 @@ $(document).ready(function(){
     $(".getRating").click(function () {
       /* get rating */
       var rating = $rateYo.rateYo("rating");
-      window.alert("Its " + rating + " Yo!");
       var comment = $("#comment").val()
       var prod_id = $(this).attr('id').split('_')[1]
 
