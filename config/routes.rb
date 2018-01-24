@@ -35,7 +35,7 @@ Rails.application.routes.draw do
 
   get 'brandcategories/show'
 
-  get 'products/show'
+  # get 'products/show'
 
   get 'brands/show'
 

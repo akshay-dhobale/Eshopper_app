@@ -1,0 +1,32 @@
+<div class="raty_block pull-center col-sm-12">
+  <% if current_user.present?%>
+    <% if !@product_rating.present?  %>
+    <b>Seems like you haven't rated this product..</b><br>
+      <p><div id="rateYo" class="">
+      </div></p>
+      <p><textarea rows="4" cols="50" name="comment" id="comment"></textarea></p><br>
+      <p><button class="getRating" id="product_<%= @product.id %>" >Post Review</button></p>
+    <% end %>
+  <% else %>
+    <P>To Post Review </P>
+    <p><%= link_to "Log In", new_user_session_path,:class=>"btn btn-default" %> </p>
+  <% end%>
+  <div class="col-sm-12">
+    <% @product_rating_all.each do |product_rating| %>
+      <div class="well col-sm-4">
+        <%= product_rating.user.email%>
+        <div id="rateYo_<%= product_rating.user_id%>" ></div><br>
+        <p><h4><%= product_rating.comment%></h4></p>
+      </div>
+      <script>
+        $(function () {
+          $("#rateYo_<%= product_rating.user_id%>").rateYo({
+            rating: "<%= product_rating.rating%>",
+            readOnly: true,
+            starWidth: "25px"
+          });
+        });
+      </script>
+    <% end %>
+  </div>
+</div>

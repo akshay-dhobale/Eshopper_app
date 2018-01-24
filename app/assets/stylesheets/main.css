@@ -2555,3 +2555,14 @@ h2.title {
   display: flex;
   overflow-x: auto;
 }
+
+.raty_column {
+    float: left;
+    width: 33.33%;
+    padding: 10px;
+}
+
+.posted_rating{
+  padding: 20px;
+  display: inline-grid;
+}
