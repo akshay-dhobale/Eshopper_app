@@ -62,8 +62,9 @@
           });
         </script>
       <% end %>
-
-      <a href=""><img src="/assets/product-details/share.png" class="share img-responsive"  alt="" /></a>
+      <b><i>Share Product:</i></b><br>
+      <%= social_share_button_tag(@product.name) %>
+      <!-- <a href=""><img src="/assets/product-details/share.png" class="share img-responsive"  alt="" /></a> -->
     </div><!--/product-information-->
   </div>
   <!-- Rating for product -->

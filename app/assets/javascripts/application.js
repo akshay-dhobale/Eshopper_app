@@ -17,4 +17,5 @@
 //= require Chart.bundle
 //= require chartkick
 //= require jquery.rateyo
+//= require social-share-button
 //= require_tree . 

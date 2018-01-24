@@ -2551,20 +2551,8 @@ h2.title {
   display: inline-block;
   border: grey solid 1px;
   border-radius: 12px;
+  margin-top: 30px;
 }
 
-.posted_comment{
-  display: flex;
-  overflow-x: auto;
-}
 
-.raty_column {
-    float: left;
-    width: 33.33%;
-    padding: 10px;
-}
 
-.posted_rating{
-  padding: 20px;
-  display: inline-grid;
-}

@@ -23,6 +23,7 @@ gem 'devise-bootstrap-views'
 gem 'rateyo-rails'
 # gem 'ratyrate'
 
+gem 'social-share-button'
 
 gem 'omniauth-twitter'
 
