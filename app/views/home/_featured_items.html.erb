@@ -15,7 +15,7 @@
           <div class="product-image-wrapper">
             <div class="single-products"> 
               <div class="productinfo text-center " title="Click on image to view product details">
-                <%= link_to products_show_path(id:prod.id) do %>
+                <%= link_to product_path(id:prod.id) do %>
                   <%= image_tag prod.product_images.first.prod_img.url, :height=>"250px" %>
                 <% end %>  
                 <h2>$<%= prod.price%></h2>

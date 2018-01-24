@@ -12,7 +12,7 @@
             <div class="product-image-wrapper">
               <div class="single-products">
                 <div class="productinfo text-center">
-                  <%= link_to products_show_path(id:prod.id) do %>
+                  <%= link_to product_path(id:prod.id) do %>
                     <%= image_tag pi.prod_img.url %>
                   <% end %>
                   <h2>$<%= pi.product.price%></h2>
